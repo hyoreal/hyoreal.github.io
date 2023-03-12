@@ -24,8 +24,8 @@ search:
 
 panel:
   lastmod: Recently Updated
-  trending_tags: 인기 태그
-  toc: 바로가기
+  trending_tags: Trending Tags
+  toc: Contents
 
 copyright:
   # Shown at the bottom of the post
@@ -77,8 +77,11 @@ post:
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
 df:
   post:
-    strftime: '%Y/%m/%d'
-    dayjs: 'YYYY/MM/DD'
+    strftime: '%b %e, %Y'
+    dayjs: 'll'
+  archives:
+    strftime: '%b'
+    dayjs: 'MMM'
 
 # categories page
 categories:
