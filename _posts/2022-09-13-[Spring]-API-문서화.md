@@ -248,4 +248,4 @@ tags: [Spring]
 
   - MockMvcBuilers가 아닌 RestDocumentationRequestBuilders 사용해야함
     - RestDocumentationRequestBuilders 사용 시 URI를 매개변수로 받으면 urlTemplates를 찾을 수 없어 URI를 String 타입으로 만들거나 해야함
-    - 🔗에러로그 링크
+    - 🔗[에러로그 링크](https://hyoreal.github.io/posts/Error-Log-urlTemplate-not-found/)
