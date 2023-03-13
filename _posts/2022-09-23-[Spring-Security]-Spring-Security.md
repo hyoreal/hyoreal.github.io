@@ -85,8 +85,8 @@ tags: [Spring, Security]
     - HttpSecurity를 매개변수로 갖고 SecurityFilterChain을 리턴하는 Bean 생성
   - HttpSecurity를 통해 Spring Security 지원 보안 설정 구성 가능
   - 로컬환경에서의 테스트를 위해서는 CSRF설정 비활성 필요
-  - [🔗AntPattern](https://ant.apache.org/manual/dirtasks.html#patterns)
-  - 이름 충돌 방지 위한 [🔗XML NameSpace](w3schools.com/xml/xml_namespaces.asp)
+  - 🔗[AntPattern](https://ant.apache.org/manual/dirtasks.html#patterns)
+  - 이름 충돌 방지 위한 🔗[XML NameSpace](w3schools.com/xml/xml_namespaces.asp)
   
 - DB 연동 방식 : Custom UserDetailsService를 사용하는 방법
 
