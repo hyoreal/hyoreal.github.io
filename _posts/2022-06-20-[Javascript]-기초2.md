@@ -2,7 +2,7 @@
 
 layout: post
 
-title: "[Javascript] 기초"
+title: "[Javascript] 기초2"
 
 comments: true
 
