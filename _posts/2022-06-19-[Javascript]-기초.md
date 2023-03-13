@@ -47,7 +47,7 @@ tags: [Javascript]
   
 //  변수값에 기호를 추가하고싶으면 \를 입력하거나 다른 기호를 사용해야한다.
   const str5 = "He's a boy."; // 가능
-  const str6 = 'He's a boy'; // 불가능
+//  const str6 = 'He's a boy'; // 불가능
 
 //  백틱을 사용할 때 ${}를 사용하여 식을 값에 할당할 수 있다.
   const str7 = `나는 ${30+1}살 입니다.`;
