@@ -1,13 +1,13 @@
 ---
 layout: post
 
-title: "[Data Sturcture] Algorithm 지식 "
+title: "[Data Sturcture] Algorithm"
 
 comments: true
 
-categories: [Data Structure], [Algorithm]
+categories: [Data Structure]
 
-tags: [Data Structure], [Algorithm]
+tags: [Data Structure]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Data Structure] Tree, Graph, BST "
 
 comments: true
 
-categories: [Spring]
+categories: [Data Structure]
 
-tags: [Spring]
+tags: [Data Structure]
 
 ---
 
