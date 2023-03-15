@@ -40,25 +40,25 @@ IntelliJ, Java 11, Spring Boot, Gradle, Redis
 
 #### 구글 계정 설정
 
-1. 구글 로그인 후 우측 상단 프로필 클릭 -> Google 계정 관리 클릭
+1.구글 로그인 후 우측 상단 프로필 클릭 -> Google 계정 관리 클릭
 
 ![img](https://blog.kakaocdn.net/dn/9GSnn/btr1dcEP3Bv/u9vUFmrOl1G8O48soKcdZK/img.png)
 
 
 
-2. 보안 탭 클릭 후 2단계 인증 활성화
+2.보안 탭 클릭 후 2단계 인증 활성화
 
 ![img](https://blog.kakaocdn.net/dn/Gvi5i/btr0WejyG1q/gFZ5NDIH3pK3BdztMkw96K/img.png)
 
 
 
-3. 앱 비밀번호 클릭 후, **앱 선택 : 메일, 기기 선택 : Windows** 선택 후 생성 클릭
+3.앱 비밀번호 클릭 후, **앱 선택 : 메일, 기기 선택 : Windows** 선택 후 생성 클릭
 
 ![img](https://blog.kakaocdn.net/dn/b8otgs/btr0VLhlzL2/Ip2hzkhGoOEUvKVoltfTwk/img.png)
 
 
 
-4. 생성된 앱 비밀번호 유출되지 않을 곳에 저장
+4.생성된 앱 비밀번호 유출되지 않을 곳에 저장
 
 ![img](https://blog.kakaocdn.net/dn/bhuazi/btr0We4U5HD/VtyqgKKZSn1FpY2ZeRuFt0/img.png)
 
@@ -68,7 +68,7 @@ IntelliJ, Java 11, Spring Boot, Gradle, Redis
 
 
 
-1. build.gradle Dependency에 추가
+1.build.gradle Dependency에 추가
 
 ```java
 dependencies {
@@ -78,7 +78,7 @@ dependencies {
 
 
 
-2. application.yml **SMTP** 세팅
+2.application.yml **SMTP** 세팅
 
 ```yaml
 spring:
@@ -97,7 +97,7 @@ spring:
 
 
 
-3. MailDto 생성
+3.MailDto 생성
 
 인증 코드를 전달받을 이메일을 그리고 이메일, 인증코드를 입력받을 DTO가 필요하다.
 
@@ -125,7 +125,7 @@ public class MailDto {
 
 
 
-4. MailConfig 생성 
+4.MailConfig 생성 
 
 이메일 인증 관련 빈 등록을 해야한다.
 
@@ -171,7 +171,7 @@ public class MailConfig {
 
 
 
-5. MailService 
+5.MailService 
 
 서비스 단에서 인증 코드 생성 및 레디스에 저장을 하였다.
 
@@ -247,7 +247,7 @@ public class MailService {
 
 
 
-6. MailController
+6.MailController
 
 mailService를 활용하여 api를 구성한다.
 
@@ -297,7 +297,7 @@ public class MailController {
 
 #### 비동기 적용
 
-1. 먼저 AsyncConfigurerSupport 를 상속받는 클래스인 AsyncConfig를 생성하였다
+1.먼저 AsyncConfigurerSupport 를 상속받는 클래스인 AsyncConfig를 생성하였다
 
 ```java
 @EnableAsync
@@ -320,7 +320,7 @@ public class AsyncConfig extends AsyncConfigurerSupport {
 
 
 
-2. 이후 메일 전송하는 메서드에 **@Async** 어노테이션을 활용하여 스레드를 생성하고, 연결한다.
+2.이후 메일 전송하는 메서드에 **@Async** 어노테이션을 활용하여 스레드를 생성하고, 연결한다.
 
 ```java
 @Async("threadPoolTaskExecutor-Mail") // @Bean 을 통해 생성한 이름을 넣는다
@@ -348,3 +348,7 @@ public class AsyncConfig extends AsyncConfigurerSupport {
 
 비동기를 적용하기 전과 비교를 해보면 무려 약 **80600%** 의 속도가 개선된 것을 확인할 수 있었다.
 그리고 레디스를 활용하여 지연 시간을 줄이고, 간단하게 이메일 인증 제한 시간을 구현할 수 있었다.
+
+> 참고 블로그
+> https://amikim5263.tistory.com/6
+> https://cofs.tistory.com/318
