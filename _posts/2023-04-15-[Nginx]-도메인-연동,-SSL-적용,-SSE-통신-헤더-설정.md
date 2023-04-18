@@ -17,19 +17,17 @@ tags: [Nginx]
 
 ## Route 53 도메인 구매 및 연결
 
-</br>
-
 ### 1. [gabia](https://www.gabia.com/)에서 원하는 도메인을 검색하여 구매한다.
 
 ![](assets/20230417_234458__1.png)
 
-</br>
+
 
 ### 2. 가비아 도메인 관리 페이지의 네임 서버를 설정하기 위해 AWS Route 53 대시보드에 접속한다.
 
 ![](assets/20230417_235127_route53.png)
 
-</br>
+
 
 ### 3. Route 53 호스팅 영역에 접속하여 구입한 도메인을 등록해준다.
 
@@ -37,13 +35,13 @@ tags: [Nginx]
 
 ![](assets/20230417_235534_route53_3.png)
 
-</br>
+
 
 ### 4. 생성 후 해당 호스팅영역의 레코드를 조회한다.
 
 ![](assets/20230417_235748_route53_4.png)
 
-</br>
+
 
 * 해당 초록박스에 포함되는 부분을 네임서버 설정에 작성해준다.
 
@@ -80,13 +78,13 @@ tags: [Nginx]
 </div>
 </details>
 
-</br>
+
 
 ### 5. EC2 터미널 접속하여 `/etc/nginx/sites-available` 에 파일 생성
 
 * default 파일을 수정해도 된다.
 
-```nano
+```yaml
 server {
         server_name   도메인명;
         root   /var/www/<실행할 html파일이 위치한 디렉토리>;
@@ -166,7 +164,7 @@ sudo certbot --nginx -d 도메인명 -d www.도메인명
 
 * ssl 인증서를 발급하게 되면 certbot이 자동으로 설정파일을 작성해준다.
 
-```nano
+```yml
 server {
         # 포트 포워딩 설정
         server_name 도메인명;
@@ -284,9 +282,9 @@ public SseEmitter connection(String lastEventId, HttpServletResponse response) {
 }
 ```
 
-> 참고 블로그</br>
+> 참고 블로rm
 >
-> [bitkunst.tistory.com](https://bitkunst.tistory.com/entry/AWS-EC2-%EB%B0%B0%ED%8F%AC-5-Route-53-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0-HTTPS)</br>
+> [bitkunst.tistory.com](https://bitkunst.tistory.com/entry/AWS-EC2-%EB%B0%B0%ED%8F%AC-5-Route-53-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0-HTTPS)
 >
 > [yeonyeon.tistory.com](https://yeonyeon.tistory.com/253)
 >
