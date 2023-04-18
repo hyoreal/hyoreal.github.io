@@ -19,31 +19,25 @@ tags: [Nginx]
 
 ### 1. [gabia](https://www.gabia.com/)에서 원하는 도메인을 검색하여 구매한다.
 
-![가비아1](/Users/hyoreal51/Desktop/가비아1.png)
+![20230417_234458__1.png](assets/20230417_234458__1.png?t=1681782384924)
 
 ### 2. 가비아 도메인 관리 페이지의 네임 서버를 설정하기 위해 AWS Route 53 대시보드에 접속한다.
 
-![route53](/Users/hyoreal51/Desktop/route53.png)
-
-
+![20230417_235127_route53.png](assets/20230417_235127_route53.png?t=1681782396293)
 
 ### 3. Route 53 호스팅 영역에 접속하여 구입한 도메인을 등록해준다.
 
-![route53_2](/Users/hyoreal51/Desktop/route53_2.png)
+![20230417_235421_route53_2.png](assets/20230417_235421_route53_2.png?t=1681782405291)
 
-![route53_3](/Users/hyoreal51/Desktop/route53_3.png)
-
-
+![20230417_235534_route53_3.png](assets/20230417_235534_route53_3.png?t=1681782414044)
 
 ### 4. 생성 후 해당 호스팅영역의 레코드를 조회한다.
 
-![route53_4](/Users/hyoreal51/Desktop/route53_4.png)
-
-
+![20230417_235748_route53_4.png](assets/20230417_235748_route53_4.png?t=1681782422618)
 
 * 해당 초록박스에 포함되는 부분을 네임서버 설정에 작성해준다.
 
-![route53_5](/Users/hyoreal51/Desktop/route53_5.png)
+![20230418_000013_route53_5.png](assets/20230418_000013_route53_5.png?t=1681782430407)
 
 <details>
 <summary>DNS 타입</summary>
@@ -75,8 +69,6 @@ tags: [Nginx]
   </ul>
 </div>
 </details>
-
-
 
 ### 5. EC2 터미널 접속하여 `/etc/nginx/sites-available` 에 파일 생성
 
