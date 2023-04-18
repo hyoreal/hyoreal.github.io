@@ -19,33 +19,31 @@ tags: [Nginx]
 
 ### 1. [gabia](https://www.gabia.com/)에서 원하는 도메인을 검색하여 구매한다.
 
-![](assets/20230417_234458__1.png)
-
-
+![가비아1](/Users/hyoreal51/Desktop/가비아1.png)
 
 ### 2. 가비아 도메인 관리 페이지의 네임 서버를 설정하기 위해 AWS Route 53 대시보드에 접속한다.
 
-![](assets/20230417_235127_route53.png)
+![route53](/Users/hyoreal51/Desktop/route53.png)
 
 
 
 ### 3. Route 53 호스팅 영역에 접속하여 구입한 도메인을 등록해준다.
 
-![호스팅영역](assets/20230417_235421_route53_2.png)
+![route53_2](/Users/hyoreal51/Desktop/route53_2.png)
 
-![](assets/20230417_235534_route53_3.png)
+![route53_3](/Users/hyoreal51/Desktop/route53_3.png)
 
 
 
 ### 4. 생성 후 해당 호스팅영역의 레코드를 조회한다.
 
-![](assets/20230417_235748_route53_4.png)
+![route53_4](/Users/hyoreal51/Desktop/route53_4.png)
 
 
 
 * 해당 초록박스에 포함되는 부분을 네임서버 설정에 작성해준다.
 
-![](assets/20230418_000013_route53_5.png)
+![route53_5](/Users/hyoreal51/Desktop/route53_5.png)
 
 <details>
 <summary>DNS 타입</summary>
@@ -84,7 +82,7 @@ tags: [Nginx]
 
 * default 파일을 수정해도 된다.
 
-```yaml
+```
 server {
         server_name   도메인명;
         root   /var/www/<실행할 html파일이 위치한 디렉토리>;
@@ -164,7 +162,7 @@ sudo certbot --nginx -d 도메인명 -d www.도메인명
 
 * ssl 인증서를 발급하게 되면 certbot이 자동으로 설정파일을 작성해준다.
 
-```yml
+```
 server {
         # 포트 포워딩 설정
         server_name 도메인명;
@@ -240,7 +238,7 @@ Nginx Reverse Proxy를 사용했기 때문에 아래와 같은 원인들로 SSE 
 
 Nginx 설정 파일에서의 프록시 부분에 이와 같은 설정을 추가해주었다.
 
-```nano
+```
 # React 프론트 서버 proxy
         location / {
              proxy_pass 프론트 배포 주소;
@@ -282,7 +280,7 @@ public SseEmitter connection(String lastEventId, HttpServletResponse response) {
 }
 ```
 
-> 참고 블로rm
+> 참고 블로그
 >
 > [bitkunst.tistory.com](https://bitkunst.tistory.com/entry/AWS-EC2-%EB%B0%B0%ED%8F%AC-5-Route-53-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0-HTTPS)
 >
