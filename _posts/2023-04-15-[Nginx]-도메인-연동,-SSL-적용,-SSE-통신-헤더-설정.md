@@ -19,25 +19,32 @@ tags: [Nginx]
 
 ### 1. [gabia](https://www.gabia.com/)에서 원하는 도메인을 검색하여 구매한다.
 
-![20230417_234458__1.png](assets/20230417_234458__1.png?t=1681782384924)
+
+<img width="1728" alt="20230417_234458__1" src="https://user-images.githubusercontent.com/102732425/232650417-d83dc66d-8064-4e8e-b945-4b2e23da8591.png">
+
 
 ### 2. 가비아 도메인 관리 페이지의 네임 서버를 설정하기 위해 AWS Route 53 대시보드에 접속한다.
 
-![20230417_235127_route53.png](assets/20230417_235127_route53.png?t=1681782396293)
+<img width="1099" alt="20230417_235127_route53" src="https://user-images.githubusercontent.com/102732425/232650533-acf2b5c7-4a4a-46ff-b955-eecf40d6d156.png">
+
 
 ### 3. Route 53 호스팅 영역에 접속하여 구입한 도메인을 등록해준다.
 
-![20230417_235421_route53_2.png](assets/20230417_235421_route53_2.png?t=1681782405291)
 
-![20230417_235534_route53_3.png](assets/20230417_235534_route53_3.png?t=1681782414044)
+<img width="1728" alt="20230417_235421_route53_2" src="https://user-images.githubusercontent.com/102732425/232650579-944445ad-0223-4a51-bab9-b8b183fc2b20.png">
+
+<img width="1042" alt="20230417_235534_route53_3" src="https://user-images.githubusercontent.com/102732425/232650587-80fb6f19-5aff-4076-b914-db0762309483.png">
+
 
 ### 4. 생성 후 해당 호스팅영역의 레코드를 조회한다.
 
-![20230417_235748_route53_4.png](assets/20230417_235748_route53_4.png?t=1681782422618)
+<img width="990" alt="20230417_235748_route53_4" src="https://user-images.githubusercontent.com/102732425/232650588-4a9467d6-b728-4af9-b5aa-e819726cdfec.png">
+
 
 * 해당 초록박스에 포함되는 부분을 네임서버 설정에 작성해준다.
 
-![20230418_000013_route53_5.png](assets/20230418_000013_route53_5.png?t=1681782430407)
+<img width="988" alt="20230418_000013_route53_5" src="https://user-images.githubusercontent.com/102732425/232650590-7fc47969-69b9-4362-981f-48bb44aab2ec.png">
+
 
 <details>
 <summary>DNS 타입</summary>
