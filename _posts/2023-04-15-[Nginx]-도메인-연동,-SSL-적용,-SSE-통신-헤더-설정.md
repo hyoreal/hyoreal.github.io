@@ -1,6 +1,8 @@
 ---
 layout: post
 
+toc: true
+
 title: "[Nginx] 도메인 연동, SSL 적용, SSE 통신 헤더 설정"
 
 comments: true
