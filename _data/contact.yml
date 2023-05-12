@@ -21,9 +21,9 @@
   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
   url:  'https://www.linkedin.com/in/%ED%9A%A8%EC%A7%84-%EC%84%9C-2b043625a/'                  # Fill with your Linkedin homepage
 
-- type: instagram
-  icon: 'fa-brands fa-instagram'   # icons powered by <https://fontawesome.com/>
-  url: 'https://www.instagram.com/h.j_51/?igshid=YmMyMTA2M2Y%3D'
+#- type: instagram
+#  icon: 'fa-brands fa-instagram'   # icons powered by <https://fontawesome.com/>
+#  url: 'https://www.instagram.com/h.j_51/?igshid=YmMyMTA2M2Y%3D'
 #
 # - type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
