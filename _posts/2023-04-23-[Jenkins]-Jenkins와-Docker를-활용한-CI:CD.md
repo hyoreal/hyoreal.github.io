@@ -71,7 +71,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 
 
-### 5. <젠킨스 EC2의 퍼블릭 IPv4 DNS>:8080 접속 후 비밀번호 입력
+### 5. \<젠킨스 EC2의 퍼블릭 IPv4 DNS\>:8080 접속 후 비밀번호 입력
 
 <img width="990" alt="20230417_235748_route53_4" src="https://github.com/hyoreal/hyoreal.github.io/assets/102732425/ec84503b-403e-4e9a-9048-181b3f687afe">
 
@@ -121,7 +121,7 @@ cat ~/.ssh/{SSH_키_이름}.pub
 
 
 
-- <젠킨스 EC2의 퍼블릭 IPv4 DNS>:8080 접속
+- \<젠킨스 EC2의 퍼블릭 IPv4 DNS\>:8080 접속
 - Jenkins관리 → Manage Credentials → Stores scoped to Jenkins의 Domains 하단 `(global)`에서 Add credentials 선택
   - Kind : `SSH Username with private key` 선택
   - ID : 본인이 원하는 식별가능한 Credential ID 입력
@@ -168,7 +168,7 @@ sudo cat /var/lib/jenkins/.ssh/{키_이름}
 
 
 
-### 5. <젠킨스 EC2의 퍼블릭 IPv4 DNS>:8080 접속
+### 5. \<젠킨스 EC2의 퍼블릭 IPv4 DNS\>:8080 접속
 
 
 
@@ -266,7 +266,7 @@ docker login
 
 
 
-### 8. <젠킨스 EC2의 퍼블릭 IPv4 DNS>:8080 접속 후 item 생성
+### 8. \<젠킨스 EC2의 퍼블릭 IPv4 DNS\>:8080 접속 후 item 생성
 
 - 필자는 운영서버에서 이미 Redis가 실행 중이었기에 하나의 이미지만 빌드하고 배포하면 되었다.
 - 보다 많은 이미지 빌드를 해야한다면 Pipeline으로 생성해야하지만 더 간편한 `Freestyle project`로 생성하였다.
@@ -321,7 +321,7 @@ sudo docker push {Docker_허브_유저명}/{Docker_허브_Repo명} // 도커 허
 
 ## 자동배포 설정
 
-### 1. <젠킨스 EC2의 퍼블릭 IPv4 DNS>:8080 접속
+### 1. \<젠킨스 EC2의 퍼블릭 IPv4 DNS\>:8080 접속
 
 
 
