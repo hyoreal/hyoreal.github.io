@@ -21,7 +21,7 @@ MAC, VSCode
 
 Node.js 기초
 
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472932053-99181176-5ced-4804-8bbb-66a9a0749461.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T102536Z&X-Amz-Expires=300&X-Amz-Signature=346a734e5ddae749fd691f66fab1bd014cf2a314a34e12319b4a8fbce4c3e2b5&X-Amz-SignedHeaders=host)
+![Image](https://github.com/user-attachments/assets/e5a54123-55ee-4fee-b077-9fa88a528db7)
 
 ## Node.js
 
