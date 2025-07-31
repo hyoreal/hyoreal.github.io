@@ -21,7 +21,7 @@ MAC, VSCode
 
 Node.js 기초
 
-![Image](/assets/images/nodejs.jpg)
+![Image](../../assets/images/nodejs.jpg)
 
 ## Node.js
 
@@ -51,9 +51,9 @@ Node.js 기초
 
 1. 구글에 Node.js 검색 후 공식 홈페이지 클릭 (아래 링크 클릭 가능)
 [https://nodejs.org/ko](https://nodejs.org/ko)
-![Image](/assets/images/nodejsSearch.png)
+![Image](../../assets/images/nodejsSearch.png)
 2. 아래 각자 환경에 맞도록 선택 후 다운
-![Image](/assets/images/nodejsDownload.png)
+![Image](../../assets/images/nodejsDownload.png)
 3. 터미널 오픈 후 아래 코드 입력하여 정상적으로 다운됐는지 확인
 각각 노드 버전 확인, npm 버전 확인 코드.
 이미지와 같이 버전이 나오면 정상적인 다운로드 성공.
@@ -63,7 +63,7 @@ node -v
 npm -v
 ```
 
-![Image](/assets/images/nodeVers.png)
+![Image](../../assets/images/nodeVers.png)
 
 <details>
 <summary>NPM</summary>
@@ -92,7 +92,7 @@ init 은 패키지 초기화/생성의 의미를 갖고있다.
 npm init
 ```
 
-![Image](/assets/images/npmInit.png)
+![Image](../../assets/images/npmInit.png)
 
 위 이미지와 같이 터미널에 메세지가 뜰텐데 설명은 아래에 적겠다.
 
@@ -132,14 +132,14 @@ About to write to /Users/hyoreal51/REACT_STUDY/package.json: // 위에 우리가
 Is this OK? (yes)   // 위 정보가 맞다면 엔터로 넘어가 패키지를 생성한다.
 ```
 
-![Image](/assets/images/packageJson.png)
+![Image](../../assets/images/packageJson.png)
 위 이미지와 같이 package.json 파일이 제대로 생성되었는지 확인한다.
 package.json은 터미널에서 확인했던 패키지 정보가 그대로 저장되어있다.
 
 3. index.js 생성
 우리가 패키지 설정을 할 때 메인으로 실행될 파일명을 기본으로 index.js로 설정하였다.
 그렇기에 해당 패키지에 실행할 index.js를 생성한다.
-![Image](/assets/images/indexJS.png)
+![Image](../../assets/images/indexJS.png)
 
 4. index.js 실행
 터미널에 아래 코드를 입력하여 index.js 에 입력한 console 메세지가 잘 출력되는지 확인한다.
@@ -147,12 +147,12 @@ package.json은 터미널에서 확인했던 패키지 정보가 그대로 저�
 node index.js
 ```
 
-![Image](/assets/images/nodejsHelloWorld.png)
+![Image](../../assets/images/nodejsHelloWorld.png)
 
 만약 index.js가 특정 경로에 있다면 경로까지 입력해주어야 한다.
 이런 복잡함을 해결하기 위해선 package.json을 수정하면 된다.
 
-![Image](/assets/images/packageJsonEdit.png)
+![Image](../../assets/images/packageJsonEdit.png)
 
 위 이미지와 같이 script 블럭 내부에 "start" 라는 명령어를 추가한다.
 
@@ -160,7 +160,7 @@ node index.js
 ```
 npm run start
 ```
-![Image](/assets/images/useScript.png)
+![Image](../../assets/images/useScript.png)
 
 ### 4. Node.js 모듈 시스템 이해하기
 
@@ -171,19 +171,19 @@ npm run start
 2. JavaScript의 모듈 시스템
     먼저 필자는 math.js라는 모듈을 하나 생성하였다.
     코드는 아래 이미지와 같다.
-    ![Image](/assets/images/mathJs.png)
+    ![Image](../../assets/images/mathJs.png)
 
     이 math.js 모듈을 사용하여 대표적인 두가지 방법을 설명하겠다.
 
     - Common JS(CJS)
         - math.js에서 module.exports를 작성해준다.
-        ![Image](/assets/images/cjs1.png)
+        ![Image](../../assets/images/cjs1.png)
 
         - index.js에서 사용할 모듈을 아래 이미지처럼 가져온다.
-        ![Image](/assets/images/cjs2.png)
+        ![Image](../../assets/images/cjs2.png)
 
         - npm run start를 실행하면 아래와 같이 나온다.
-        ![Image](/assets/images/cjs3.png)
+        ![Image](../../assets/images/cjs3.png)
 
         모듈은 객체이기때문에 아래 코드와 같이 객체분해할당을 사용해도 동일하게 동작한다.
         ```
@@ -196,21 +196,21 @@ npm run start
 
     - ES Module(ESM)
         - React에서 사용되는 방식으로 ESM를 사용하기 위해선 package.json에 타입을 지정해줘야한다. 앞으로 이 패키지는 ESM을 사용하겠다는 의미이다.
-        ![Image](/assets/images/esm1.png)
+        ![Image](../../assets/images/esm1.png)
 
         이 설정을 유지한채로 Common JS 코드를 실행하게되면 아래와 같이 오류가 발생한다.
         이 오류는 ESM과 CJS를 같이 사용할 수 없다는 오류이다.
-        ![Image](/assets/images/esm2.png)
+        ![Image](../../assets/images/esm2.png)
 
         - math.js의 export방식을 아래 이미지와 같이 변경해준다.
         함수 선언 시에 function 앞에 export를 작성하여 이 코드를 생략할 수도 있다.
         export default function으로 함수를 작성하게되면 math 모듈을 대표하는 기본값으로 설정된다.
-        ![Image](/assets/images/ems3.png)
+        ![Image](../../assets/images/ems3.png)
 
         - index.js의 require를 지우고 아래와 같이 import방식으로 수정한다.
         CJS처럼 파일명까지만 입력할 경우 오류가 발생하니 __꼭 확장자까지 작성해야한다__.
         기본값을 설정한 경우에는 중괄호 없이 바로 import하면 모듈에서 기본값으로 설정한 함수만 가져온다.
-        ![Image](/assets/images/esm4.png)
+        ![Image](../../assets/images/esm4.png)
  
 ### 5. Node.js 라이브러리 사용하기
 
