@@ -157,6 +157,7 @@ node index.js
 ```
 npm run start
 ```
+
 <img width="513" height="200" alt="Image" src="https://github.com/user-attachments/assets/a7169445-7aea-40b4-a675-4905ecdc599a" />
 
 ### 4. Node.js 모듈 시스템 이해하기
@@ -168,6 +169,7 @@ npm run start
 2. JavaScript의 모듈 시스템
    먼저 필자는 math.js라는 모듈을 하나 생성하였다.
    코드는 아래 이미지와 같다.
+   
    <img width="311" height="84" alt="Image" src="https://github.com/user-attachments/assets/a3a9a5ac-05b9-4762-af6b-dfe5a2ac82e6" />
 
    이 math.js 모듈을 사용하여 대표적인 두가지 방법을 설명하겠다.
