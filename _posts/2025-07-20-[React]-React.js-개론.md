@@ -26,7 +26,7 @@ React.js 개론
 
 ### 2. React 특징
 1. 컴포넌트 기반 UI 표현
-    ![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472940262-98238d61-4fee-47fd-8fc0-fa0fcf402f6a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T103217Z&X-Amz-Expires=300&X-Amz-Signature=b017d1c328344605caab7ccb71372d9351b34bbb5d0df8e56fc8b9e9d1452d87&X-Amz-SignedHeaders=host)
+    ![Image](/assets/images/component.png)
     - 컴포넌트(Component) : 화면을 수정하는 요소. (UI 구성요소)
     - 컴포넌트별로 모듈을 분리하여 중복 코드 제거 및 유지보수성 향상
 
@@ -39,10 +39,10 @@ React.js 개론
 
 3. 화면 업데이트가 빠르게 처리됨
     - 브라우저 렌더링 과정 (Critical Rendering Path)
-    ![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472943026-71d38a37-41d8-415f-863b-fbc38c9aaf43.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T103738Z&X-Amz-Expires=300&X-Amz-Signature=d9de0528acfc8c58b07b1a47eae2e9d4549e1c7d2044b0f401c26ac70828bc1d&X-Amz-SignedHeaders=host)
+    ![Image](/assets/images/browserRender1.png)
         1. HTML/CSS가 각각 DOM과 CSS Object Model(CSSOM)으로 변환
             - DOM (Document Object Model) : html을 브라우저가 이해하기 쉬운 방식으로 변한 형태의 객체. 요소들의 위치, 배치, 모양에 관한 모든 정보가 담김.
-            ![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472945162-286b2034-0765-422c-9f67-2904553a843a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T104121Z&X-Amz-Expires=300&X-Amz-Signature=2efb26a78499eaf8f3959f92cd6f55818de5f9b333d5773fb54f348b9f185ee9&X-Amz-SignedHeaders=host)
+            ![Image](/assets/images/browserRender2.png)
             - CSSOM (CSS Object Model) : CSS가 브라우저가 이해하기 쉬운 형태로 변환한 객체. 요소들의 스타일과 관련된 모든 정보가 담김.
         2. DOM과 CSSOM을 합쳐 __Render Tree__ 생성
             - Render Tree: 웹 페이지의 청사진. (설계도와 같음)
@@ -51,12 +51,12 @@ React.js 개론
 
     - 화면 업데이트는 언제?
         - JavaScript 가 DOM을 수정하면 업데이트 발생
-        ![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472947971-6924baf8-d5f8-4042-b647-10014ef5f00f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T104616Z&X-Amz-Expires=300&X-Amz-Signature=a0450d54c7db36d4545fcfc32ffe60be1157a9584e36b22ec02070206e29f8c4&X-Amz-SignedHeaders=host)
+        ![Image](/assets/images/browserRender4.png)
             - DOM이 수정되면 Critical Rendering Path의 전체 단계를 다시 진행.
             - Reflow, Repaint가 많이 발생하게되면 성능 악화.
                 - 자바스크립트로 이와 같은 상황 방지 위해선 동시에 발생한 업데이트를 변수 등으로 모아 한번에 수정할 수 있도록 일련의 과정을 넣어줘야함.
                 ##### 리액트는 이 과정을 자동으로 진행해줌. (Virtual DOM)
-                ![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472950591-507b74be-c5c4-42f9-97ce-6d96c83e0dde.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T105122Z&X-Amz-Expires=300&X-Amz-Signature=a3c33c7e166ef81ab80920ef17375fe1688da4e32254877d14fb449f266748c0&X-Amz-SignedHeaders=host)
+                ![Image](/assets/images/browserRender5.png)
 
     - __Virtual DOM__
         - DOM을 자바스크립트 객체로 흉내낸 것. 일종의 복제.
@@ -80,10 +80,10 @@ React 공식 홈페이지에서 권장하는 Vite를 사용하는 방식이 좀 
 npm create vite@latest
 ```
 아래 이미지와 같이 선택. (프로젝트명은 각자 알아서)
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472957433-d3878468-ada7-43fe-923f-bafa772ce966.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T110541Z&X-Amz-Expires=300&X-Amz-Signature=a548339b355cb3e8e8a4dd00f5ac7294366bc84d4de5f400e0f5eb788e1bc39f&X-Amz-SignedHeaders=host)
+![Image](/assets/images/vite1.png)
 
 위 방법을 따라가면 아래와 같이 폴더가 생성된다.
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472957831-e634fc64-7346-472f-9381-92707a2073cf.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T110701Z&X-Amz-Expires=300&X-Amz-Signature=baae5964b5f1f0792e0643dd9a2e00b28cef6cf75ad625e199fe0e5639e63c65&X-Amz-SignedHeaders=host)
+![Image](/assets/images/vite2.png)
 
 5. package.json
 ```
@@ -117,10 +117,10 @@ npm create vite@latest
 ```
 
 6. package.json만 생성되어있으니 npm을 사용하여 라이브러리 다운로드
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472959757-9f8c4656-4b81-41b8-8665-ec9c2a693530.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T111322Z&X-Amz-Expires=300&X-Amz-Signature=7b2b269dd274d90b9413b30d4ef59da1c04dbb8e36edb6fbebb7f67b49bedd2a&X-Amz-SignedHeaders=host)
+![Image](/assets/images/vite3.png)
 
 아래 이미지와 같이 node_modules와 package-lock.json이 생성된걸 확인할 수 있다
-![Image](https://github-production-user-asset-6210df.s3.amazonaws.com/102732425/472960110-2bfc244a-f092-43d1-acbe-eb6052c73e85.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250731%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250731T111423Z&X-Amz-Expires=300&X-Amz-Signature=183ef812efdb0fda17bab079b4ddaea199c35b26e3d207d767337ebe21d6caf7&X-Amz-SignedHeaders=host)
+![Image](/assets/images/vite4.png)
 
 7. 각 폴더 별 설명
     - public: 이미지, 폰트, 동영상 등의 정적 파일 보관
@@ -134,7 +134,7 @@ npm create vite@latest
 
 8. 리액트 앱 실행
 package.json에 작성되어있던 script 중 dev를 사용해서 실행 가능
-![Image](https://github.com/user-attachments/assets/2b884d76-48e8-44f8-b793-6eaa939b52ac)
+![Image](/assets/images/react1.png)
 터미널에 출력된 localhost의 포트로 접속 가능
 
 ### 4. React App 구동원리
