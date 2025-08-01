@@ -24,7 +24,7 @@ MAC, VSCode
 
 <img width="504" height="243" alt="Image" src="https://github.com/user-attachments/assets/e6b0c535-fae4-4220-8d60-ff3e2c52c1ed" />
 
-## Node.js
+## Node.js 
 
 > React 배우기 전 Node.js 배우는 이유?
 > React.js는 Node.js기반으로 동작하는 기술이기 때문
