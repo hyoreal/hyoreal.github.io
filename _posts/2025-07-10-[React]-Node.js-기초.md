@@ -11,6 +11,9 @@ categories: [Front-End]
 
 tags: [Front-End]
 ---
+
+Node.js 기초
+
 ---
 
 #### 개발 환경
@@ -18,8 +21,6 @@ tags: [Front-End]
 MAC, VSCode
 
 ---
-
-Node.js 기초
 
 <img width="504" height="243" alt="Image" src="https://github.com/user-attachments/assets/e6b0c535-fae4-4220-8d60-ff3e2c52c1ed" />
 
@@ -30,7 +31,6 @@ Node.js 기초
 > Next.js, Vue.js, Svelte 등등 Node.js 기반 기술이 여럿 있음.
 
 ### 1. Node.js 란?
-
 웹 브라우저가 아닌 환경에서도 자바스크립트 코드를 실행시켜주는 __JavaScript 실행 환경(Run Time)__
 
 <details>
@@ -46,14 +46,15 @@ Node.js는 브라우저 외의 다른 환경에서도 실행 가능하게 해줌
 </div>
 </details>
 
-
 ### 2. Node.js 설치 과정
 
 1. 구글에 Node.js 검색 후 공식 홈페이지 클릭 (아래 링크 클릭 가능)
    [https://nodejs.org/ko](https://nodejs.org/ko)
    <img width="504" height="243" alt="Image" src="https://github.com/user-attachments/assets/8b19e2aa-e9d1-4535-a207-4497e67891a1" />
+
 2. 아래 각자 환경에 맞도록 선택 후 다운
-   ![Image](../../assets/images/nodejsDownload.png)
+   <img width="984" height="286" alt="Image" src="https://github.com/user-attachments/assets/8b57a232-e6a1-48eb-9e66-43b14df1e88c" />
+
 3. 터미널 오픈 후 아래 코드 입력하여 정상적으로 다운됐는지 확인
    각각 노드 버전 확인, npm 버전 확인 코드.
    이미지와 같이 버전이 나오면 정상적인 다운로드 성공.
@@ -62,7 +63,7 @@ Node.js는 브라우저 외의 다른 환경에서도 실행 가능하게 해줌
 node -v
 npm -v
 ```
-<img width="492" height="143" src="https://github.com/hyoreal/hyoreal.github.io/
+<img width="492" height="143" alt="Image" src="https://github.com/user-attachments/assets/a2a726cc-fccb-41a1-9806-6f454925ecdf" />
 
 <details>
 <summary>NPM</summary>
@@ -76,7 +77,6 @@ npm -v
 ### 3. Node.js 사용하기
 
 1. Package : Node.js에서 사용하는 프로그램 단위
-
 <details>
 <summary>프로그램 단위</summary>
 <div markdown="1">
@@ -85,11 +85,11 @@ npm -v
 </details>
 
 2. 각자 원하는 개발툴을 열어 (필자는 VSCode를 사용한다.) Node.js 패키지 생성 위한 경로 선택 후 아래 코드를 통해 새로운 패키지를 생성한다.
-   init 은 패키지 초기화/생성의 의미를 갖고있다.
-
+init 은 패키지 초기화/생성의 의미를 갖고있다.
 ```
 npm init
 ```
+
 <img width="139" height="68" alt="Image" src="https://github.com/user-attachments/assets/d5e067e8-0a3a-4073-883f-f4d547644107" />
 
 위 이미지와 같이 터미널에 메세지가 뜰텐데 설명은 아래에 적겠다.
@@ -129,7 +129,9 @@ About to write to /Users/hyoreal51/REACT_STUDY/package.json: // 위에 우리가
 
 Is this OK? (yes)   // 위 정보가 맞다면 엔터로 넘어가 패키지를 생성한다.
 ```
+
 <img width="554" height="277" alt="Image" src="https://github.com/user-attachments/assets/f481fc4d-e1b4-46c0-a730-fb3f55d12b58" />
+
 위 이미지와 같이 package.json 파일이 제대로 생성되었는지 확인한다.
 package.json은 터미널에서 확인했던 패키지 정보가 그대로 저장되어있다.
 
@@ -143,6 +145,7 @@ package.json은 터미널에서 확인했던 패키지 정보가 그대로 저�
 ```
 node index.js
 ```
+
 <img width="521" height="89" alt="Image" src="https://github.com/user-attachments/assets/7576ecb3-5c54-4fed-9819-844c16ce8684" />
 
 만약 index.js가 특정 경로에 있다면 경로까지 입력해주어야 한다.
@@ -177,10 +180,15 @@ npm run start
    - Common JS(CJS)
 
      - math.js에서 module.exports를 작성해준다.
+     
        <img width="445" height="169" alt="Image" src="https://github.com/user-attachments/assets/5f5c1d24-82fc-40ac-b85d-1d3b10e4fa75" />
+       
      - index.js에서 사용할 모듈을 아래 이미지처럼 가져온다.
+       
        <img width="346" height="288" alt="Image" src="https://github.com/user-attachments/assets/f1ee1055-4edb-445a-ab21-9e18f090f0d1" />
+       
      - npm run start를 실행하면 아래와 같이 나온다.
+       
        <img width="498" height="149" alt="Image" src="https://github.com/user-attachments/assets/8498719e-b585-4ac9-8cd6-19457341e70e" />
 
      모듈은 객체이기때문에 아래 코드와 같이 객체분해할당을 사용해도 동일하게 동작한다.
@@ -190,23 +198,29 @@ npm run start
      console.log(add(1, 2));
      console.log(sub(1, 2));
      ```
+
      - CommonJSsms 모듈로부터 특정 값을 내보내어 또 다른 모듈에서 require로 불러온 값을 이용하는 방식이다.
    - ES Module(ESM)
 
      - React에서 사용되는 방식으로 ESM를 사용하기 위해선 package.json에 타입을 지정해줘야한다. 앞으로 이 패키지는 ESM을 사용하겠다는 의미이다.
+       
        <img width="336" height="116" alt="Image" src="https://github.com/user-attachments/assets/732597d3-f8b5-4b26-91ff-3b5c319c8c91" />
 
      이 설정을 유지한채로 Common JS 코드를 실행하게되면 아래와 같이 오류가 발생한다.
      이 오류는 ESM과 CJS를 같이 사용할 수 없다는 오류이다.
+     
      <img width="532" height="210" alt="Image" src="https://github.com/user-attachments/assets/14de79a8-3b2c-48ef-ad84-43d272fc363f" />
 
      - math.js의 export방식을 아래 이미지와 같이 변경해준다.
        함수 선언 시에 function 앞에 export를 작성하여 이 코드를 생략할 수도 있다.
        export default function으로 함수를 작성하게되면 math 모듈을 대표하는 기본값으로 설정된다.
+       
        <img width="639" height="229" alt="Image" src="https://github.com/user-attachments/assets/32671c50-3e4a-4834-9c09-d6725be82a70" />
+       
      - index.js의 require를 지우고 아래와 같이 import방식으로 수정한다.
        CJS처럼 파일명까지만 입력할 경우 오류가 발생하니 __꼭 확장자까지 작성해야한다__.
        기본값을 설정한 경우에는 중괄호 없이 바로 import하면 모듈에서 기본값으로 설정한 함수만 가져온다.
+       
        <img width="268" height="225" alt="Image" src="https://github.com/user-attachments/assets/3801155c-7ce0-48d8-9386-547edef1a956" />
 
 ### 5. Node.js 라이브러리 사용하기
