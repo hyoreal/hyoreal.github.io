@@ -946,3 +946,4 @@ const HookExam = () => {
 
 export default HookExam;
 ```
+- 보통은 커스텀 훅은 src 디렉토리 하위에 Hooks라는 별도의 폴더를 만들어 분리하는게 일반적임
