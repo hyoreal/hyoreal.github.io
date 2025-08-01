@@ -14,7 +14,7 @@ tags: [Front-End]
 
 ---
 
-React.js 개론
+React.js 개론 
 
 ---
 
@@ -152,7 +152,7 @@ package.json에 작성되어있던 script 중 dev를 사용해서 실행 가능
 3. React 앱의 렌더링
     - 실행 후 주소 접속 시 index.html을 브라우저에게 전송
     - index.html에 있는 스크립트 태그를 통해 요소 불러옴
-        - ReactDOM.createRoot() : 인수로 전달받은 html 요소를 리액트릐 루트로 만들어줌
+        - ReactDOM.createRoot() : 인수로 전달받은 html 요소를 리액트의 루트로 만들어줌
     - 임포트한 컴포넌트로 요소를 추가해줌
         - 컴포넌트 : 함수가 html태그를 리턴하고 있으면 컴포넌트라고 부름
 
