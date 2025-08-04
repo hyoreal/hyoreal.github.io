@@ -41,12 +41,10 @@ React.js 개론
 
 4. 화면 업데이트가 빠르게 처리됨
     - 브라우저 렌더링 과정 (Critical Rendering Path)
-      
     <img width="805" height="361" alt="Image" src="https://github.com/user-attachments/assets/d84e72a0-8193-400c-9967-9d9ed1bc2170" />
-  
+    
     1. HTML/CSS가 각각 DOM과 CSS Object Model(CSSOM)으로 변환
         - DOM (Document Object Model) : html을 브라우저가 이해하기 쉬운 방식으로 변한 형태의 객체. 요소들의 위치, 배치, 모양에 관한 모든 정보가 담김
-
         <img width="785" height="367" alt="Image" src="https://github.com/user-attachments/assets/4d3ecd20-9965-438c-b555-50193e38f7cd" />
 
         - CSSOM (CSS Object Model) : CSS가 브라우저가 이해하기 쉬운 형태로 변환한 객체. 요소들의 스타일과 관련된 모든 정보가 담김.
@@ -57,14 +55,12 @@ React.js 개론
 
     - 화면 업데이트는 언제?
         - JavaScript 가 DOM을 수정하면 업데이트 발생
-          
         <img width="803" height="312" alt="Image" src="https://github.com/user-attachments/assets/1edefc55-54a8-4caa-83c9-b158c760afe2" />
-        
+
         - DOM이 수정되면 Critical Rendering Path의 전체 단계를 다시 진행.
         - Reflow, Repaint가 많이 발생하게되면 성능 악화.
             - 자바스크립트로 이와 같은 상황 방지 위해선 동시에 발생한 업데이트를 변수 등으로 모아 한번에 수정할 수 있도록 일련의 과정을 넣어줘야함.
             ##### 리액트는 이 과정을 자동으로 진행해줌. (Virtual DOM)
-  
             <img width="797" height="242" alt="Image" src="https://github.com/user-attachments/assets/c231d8c5-486d-4751-89bd-6dbab23a5546" />
 
     - __Virtual DOM__
@@ -177,4 +173,5 @@ package.json에 작성되어있던 script 중 dev를 사용해서 실행 가능
 > 출처
 
 > 인프런 한 입 크기로 잘라먹는 리액트(React.js) : 기초부터 실전까지
+
 
