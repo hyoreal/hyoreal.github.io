@@ -40,12 +40,14 @@ React.js 입문하기
             </>
         } 
         ```
+
     - ./src/main.jsx
         - <React.StrictMode></React.StrictMode> 삭제 후 <App />만 남김
             - StrictMode : 작성한 코드에 잠재적인 문제가 있는지 내부적으로 검사해 경고해주는 도구.
 3. React 실습에 도움되는 도구 설치
     - ESLint : 작성한 코드를 정적으로 검사하여 오류 발생할만한 코드가 있다면 경고를 띄워주는 도구.
         - ./src/.eslintrc.cjs애 몇가지 옵션 사용 끄기. (아래 코드와 동일하게 rules 부분 수정)
+
         ```
         import js from '@eslint/js'
         import globals from 'globals'
@@ -88,6 +90,7 @@ React.js 입문하기
     - 클래스를 이용해서도 생성이 가능하지만 코드의 양이 방대해지기 때문에 함수를 사용하여 컴포넌트를 만드는 것이 일반적이며 권장하는 방법이다.
     - 컴포넌트 생성 시에는 함수명이 반드시 대문자로 시작해야한다.
         - 소문자로 만들게 되면 리액트가 컴포넌트로 인식하지 않는다.
+
     ```
     function App() {
         return (
@@ -153,6 +156,7 @@ export default App
 
     - 위 이미지와 같이 컴포넌트를 모아두기 위한 components 폴더를 생성하여 하위에 Header.jsx파일을 생성한다.
         - Header.jsx의 내부 소스는 App.jsx에 만들었던 Header 컴포넌트를 잘라내어 가져온다. 아래 소스와 같다.
+
         ```
         // Header.jsx
 
@@ -168,6 +172,7 @@ export default App
         ```
 
         - App.jsx는 아래와 같이 수정한다.
+
         ```
         import './App.css'
         import Header from './components/Header' // 이전 포스팅에서 ES Module은 확장자까지 작성해야한다고 하였지만 vite로 생성한 리액트앱은 확장자를 작성하지 않아도 해당 파일을 찾아갈 수 있도록 내부적인 설정이 되어있다.
@@ -183,12 +188,14 @@ export default App
 
         export default App
         ```
+
 4. 계층 구조로 컴포넌트 생성하기
     - 필자는 아래 구조로 컴포넌트를 생성하였다.
         - App : 루트 컴포넌트
             - Header : 자식 컴포넌트
             - Main : 자식 컴포넌트
             - Footer : 자식 컴포넌트
+
     ```
     // Header.jsx
     function Header() {
@@ -259,6 +266,7 @@ export default App
         - html에 자바스크립트 표현식을 넣을때는 중괄호를 사용하여 넣는다.
             - 자바스크립트 표현식 : 삼항연산자, 변수명 등 한 줄로 특정 값으로 평가될 수 있는 코드
             - if나 for문은 한 줄로 평가될 수 없는 값이기에 오류가 발생한다.
+
     ```
     function Footer() {
         const myName = "HyoReal";
@@ -284,6 +292,7 @@ export default App
         - 적절한 최상위 태그가 없는 경우 빈 태그로라도 묶어줘야한다
 
 ### 3. JSX를 사용하여 메인 컴포넌트가 조건에 따라 각각 다른 UI를 보여주도록 구현하기
+
 ```
 // Main.jsx
 
@@ -301,6 +310,7 @@ const Main = () => {
 
 ### 4. JSX 문법 상에서 DOM 요소에 스타일 적용하기
 1. 요소에 직접 스타일 속성 설정하기
+
 ```
 // Main.jsx
 
@@ -315,11 +325,13 @@ const Main = () => {
     </>;
 }
 ```
+
 - 스타일 요소는 객체를 전달하기 때문에 중괄호를 두번 사용해야한다.
 - 요소의 스타일 속성을 직접 전달하는 경우 - 로 연결된 규칙이 아닌 CamelCase규칙으로 작성해야한다.
     - ex) ~~background-color~~ __backgroundColor__
 
 2. 컴포넌트를 위한 CSS파일 생성하여 스타일 속성 설정하기
+
 ```
 // Main.css
 
@@ -344,6 +356,7 @@ const Main = () => {
     </>;
 }
 ```
+
 - css 파일을 만들어 스타일을 작성하고 jsx에서 import하여 사용한다.
     - 단, JSX에서는 자바스크립트와 HTML을 함께 사용하고 있어 Javascript의 예약어인 class는 사용불가하면 __className__ 로 작성해야한다.
 
@@ -406,6 +419,7 @@ const Main = () => {
     - Handling : 처리하다
     - Event Handling : 이벤트가 발생했을때 그것을 처리하는 것
     - 기존 JSP처럼 콜백함수처럼 사용하면 된다
+
     ```
     // Button.jsx
     const Button = ({text, color = "black"}) => {
@@ -417,6 +431,7 @@ const Main = () => {
 
 2. 이벤트객체
     - 리액트에서 발생하는 모든 이벤트들은 이벤트 핸들러 함수를 호출할때 매개변수로 이벤트 객체를 제공.
+
     ```
     // Button.jsx
     const Button = ({text, color = "black"}) => {
@@ -529,6 +544,7 @@ function App() {
 
 export default App
 ```
+
 - count 버튼을 클릭하게되면 App 컴포넌트가 가진 count의 state가 업데이트됨
 - App 컴포넌트 리렌더링 시 자식 컴포넌트 모두 리렌더링 진행 
 - count와 상관없는 Bulb 컴포넌트도 함께 리렌더링 진행됨 
@@ -585,6 +601,7 @@ export default App
     ```
 
     - 더 나아가 컴포넌트 별로 분리할 수 있다
+
     ```
     // App.jsx
 
@@ -649,6 +666,7 @@ export default App
     ```
 
 ### 9. State로 사용자 입력 관리하기
+
 ```
 // Register.jsx
 // 간단한 회원가입 폼
@@ -774,6 +792,7 @@ export default Register
         - 해당 요소를 조작하는 것 또한 가능
 
 1. 레퍼런스 객체 활용법
+
 ```
 import { useState, useRef } from "react"
 
@@ -823,6 +842,7 @@ export default Register
 ```
 
 2. 레퍼런스 객체를 생성하여 컴퍼넌트가 렌더링하는 DOM 요소 접근 및 조작
+
 ```
 import { useState, useRef } from "react"
 
@@ -946,4 +966,37 @@ const HookExam = () => {
 
 export default HookExam;
 ```
+
 - 보통은 커스텀 훅은 src 디렉토리 하위에 Hooks라는 별도의 폴더를 만들어 분리하는게 일반적임
+
+#### 추가
+
+1. node.js 사용자 정의 모듈과 package 와 임포트 경로 차이 이유알아오기?
+  - Node.js에서 사용자 정의 모듈과 package.json에 정의된 모듈의 임포트 경로가 다른 이유는 모듈 탐색 방식 때문
+  - **사용자 정의 모듈 (상대/절대 경로)**
+    - 사용자 정의 모듈은 파일 시스템 경로를 사용.
+      • 상대 경로: require('./my-module.js')와 같이 현재 파일의 위치를 기준으로 다른 파일을 찾음
+      • 절대 경로: require('/home/user/project/my-module.js')와 같이 시스템의 루트 디렉터리부터 시작하는 완전한 경로를 사용
+    - 이 방식은 파일이 어디에 있는지 정확하게 알려주므로, Node.js는 별도의 추가 탐색 없이 해당 경로에서 바로 파일을 로드.
+  
+ - **package.json에 정의된 모듈 (이름)**
+   - package.json에 정의된 모듈은 보통 npm 또는 yarn 같은 패키지 매니저를 통해 설치된 외부 라이브러리
+    - 이 모듈들은 프로젝트의 node_modules 디렉터리에 설치
+    - 모듈 이름으로 임포트: require('express'), require('lodash')와 같이 모듈의 이름만 사용
+    - Node.js는 모듈 이름을 기반으로 아래와 같은 규칙을 따라 탐색을 시작
+      1. node_modules 탐색: 현재 파일이 있는 디렉터리부터 시작하여 상위 디렉터리로 이동하면서 각 디렉터리에 있는 node_modules 폴더를 차례대로 탐색
+      2. 패키지 내 main 필드 확인: express 모듈을 찾으면, node_modules/express/package.json 파일을 열어 main 필드에 지정된 엔트리 포인트를 로드
+  
+2. Virtual DOM이 효율적인 이유?
+  a. 선언형 프로그래밍 : 하나의 기능 동작으로만으로 새로운 렌더링 발생하기 때문에  느림
+  b. Virtual DOM : 가상 DOM에서 수정사항을 모두 반영 후 실제 DOM과 비교 후 실제 변경건만 반영하기때문에 빠름
+  - Virtual DOM의 작동 방식
+    1. 메모리 내 복사본: Virtual DOM은 실제 DOM을 경량화된 자바스크립트 객체 형태로 메모리 내에 복제한 것.
+    2. 변경 사항 감지: 상태에 변경이 발생하면, Virtual DOM은 전체 UI를 다시 렌더링하는 대신, 새로운 Virtual DOM을 만들고 이전 Virtual DOM과 비교.
+    3. 최소한의 변경: 두 Virtual DOM을 비교하여 정확히 어떤 부분이 바뀌었는지(예: 텍스트 변경, 클래스 추가 등)를 파악
+    4. 실제 DOM 업데이트: 변경된 부분만 실제 DOM에 적용.
+    - 왜 이것이 효율적인가?
+      - DOM 조작의 비용: 실제 DOM을 직접 조작하는 것은 매우 비용이 많이 드는 작업. 브라우저는 DOM이 변경될 때마다 화면을 다시 계산하고, 다시 그리는 과정을 거쳐야 하는데, 이 과정이 많은 자원을 소모
+      - Virtual DOM의 경량성: Virtual DOM은 자바스크립트 객체이므로, 메모리에서 비교하고 수정하는 것이 매우 빠름. 실제 DOM에 직접 접근하는 것에 비해 성능 부담이 훨씬 적음.
+    따라서 Virtual DOM은 변경 사항을 한데 모아서, 필요한 부분만 한 번에 실제 DOM에 적용함으로, 불필요한 DOM 조작을 줄여 성능을 크게 향상.
+

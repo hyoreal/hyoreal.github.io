@@ -229,11 +229,12 @@ npm run start
    프로그램을 개발할 때 필요한 다양한 기능들을 미리 모듈화한것
 2. npmjs
    npm의 모든 라이브러리가 등록된 사이트 [https://www.npmjs.com/](https://www.npmjs.com/)
-   이 사이트에서 특정 라이브러리를 찾아 터미널에 명령어를 입력하여 새로운 라이브러리를 설치하게 되면 __package.json에 dependencies 항목__이 생성된다.
-   그리고 __설치된 라이브러리는 node_modules 폴더에 저장__된다.
+   이 사이트에서 특정 라이브러리를 찾아 터미널에 명령어를 입력하여 새로운 라이브러리를 설치하게 되면 __package.json에 dependencies 항목__ 이 생성된다.
+   그리고 __설치된 라이브러리는 node_modules 폴더에 저장__ 된다.
    package-lock.json은 이 패키지에서 사용하는 라이브러리들의 상세 정보를 저장해둔다. package.json보다 정확한 정보를 갖고있다.
    설치한 라이브러리는 기존 모듈과 다르게 from 뒤에 라이브러리 이름만 명시해주면 된다.
    만약 node_modules와 package-lock.json이 삭제된 경우 npm i를 통해 package.json에 dependencies에 있는 라이브러리들을 설치하도록 하면 정상적으로 동작한다.
 
 > 출처
 > 인프런 한 입 크기로 잘라먹는 리액트(React.js) : 기초부터 실전까지
+
