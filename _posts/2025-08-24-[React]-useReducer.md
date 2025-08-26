@@ -211,3 +211,13 @@ function App() {
 
 export default App
 ```
+
+### 4. 추가. useState와 useReducer 언제 사용해야할까?
+- useState 
+  - 관리해야 할 State가 1개일 경우
+  - 그  State가 단순한 숫자, 문자열 또는 Boolean 값일 경우 
+- useReducer
+  - 관리해야 할 State가 1개 이상, 복수일 경우
+  - 혹은 현재는 단일 State 값만 관리하지만, 추후 유동적인 가능성이 있는 경우
+  - 스케일이 큰 프로젝트의 경우
+  - State의 구조가 복잡해질 것으로 보이는 경우 
