@@ -1271,8 +1271,6 @@ public class AIManagementPhilosophy {
 
 3가지 기법을 **상황에 맞게 조합**하면 AI를 최대한 활용할 수 있습니다!
 
-다음 포스팅에서는 **실전: ChatGPT API로 자동 코드 리뷰 시스템 만들기**를 다뤄보겠습니다. 🚀
-
 ------
 
 > 참고 자료
