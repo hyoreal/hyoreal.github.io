@@ -3,7 +3,7 @@ layout: post
 
 toc: true
 
-title: "[AI] Cursor AI의 @Codebase 기능 완벽 이해하기 (feat. Spring 개발자 관점)"
+title: "[AI 도구] Cursor AI의 @Codebase 기능 완벽 이해하기 (feat. Spring 개발자 관점)"
 
 date: 2025-12-13 19:04:00 +0900
 

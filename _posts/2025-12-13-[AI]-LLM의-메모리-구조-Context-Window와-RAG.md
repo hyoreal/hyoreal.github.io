@@ -3,7 +3,7 @@ layout: post
 
 toc: true
 
-title: "[AI] LLM의 메모리 구조: Context Window와 RAG (feat. HTTP Stateless)"
+title: "[AI 기초] LLM의 메모리 구조: Context Window와 RAG (feat. HTTP Stateless)"
 
 date: 2025-12-13 19:15:00 +0900
 

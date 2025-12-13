@@ -3,7 +3,7 @@ layout: post
 
 toc: true
 
-title: "[AI] AI의 지능을 해킹하자: Few-Shot 기법과 Chain of Thought (CoT)"
+title: "[AI 실전] AI의 지능을 해킹하자: Few-Shot 기법과 Chain of Thought (CoT)"
 
 date: 2025-12-13 19:25:00 +0900
 

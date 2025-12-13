@@ -3,7 +3,7 @@ layout: post
 
 toc: true
 
-title: "[AI] 백엔드 개발자를 위한 LLM과 Transformer 이해하기"
+title: "[AI 기초] 백엔드 개발자를 위한 LLM과 Transformer 이해하기 (구버전)"
 
 date: 2025-12-13 18:42:00 +0900
 
