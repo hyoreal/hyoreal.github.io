@@ -145,7 +145,12 @@ brew install sqlite
 #### 전체 흐름 미리보기
 
 ```bash
+# Step 0: 프로젝트 디렉토리 생성
+mkdir -p ~/projects/mcp-practice
+cd ~/projects/mcp-practice
+
 # Step 1: 더미 DB 생성
+vi create_dummy_db.py  # 파일 생성 후 코드 작성
 python3 create_dummy_db.py
 
 # Step 2: MCP Server 실행 (테스트)
@@ -160,11 +165,68 @@ vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
 
 ------
 
+### Step 0: 프로젝트 디렉토리 준비 📁
+
+실습을 위한 작업 공간을 먼저 만들어요.
+
+```bash
+# MCP 실습용 디렉토리 생성
+mkdir -p ~/projects/mcp-practice
+
+# 디렉토리로 이동
+cd ~/projects/mcp-practice
+
+# 현재 위치 확인
+pwd
+# /Users/yourname/projects/mcp-practice
+```
+
+**왜 필요한가요?**
+- 홈 디렉토리(`~`)에 파일이 흩어지는 것 방지
+- 나중에 파일을 찾기 쉽게 체계적으로 관리
+- Claude Desktop 설정에서 **절대 경로**가 필요함
+
+------
+
 ### Step 1: 더미 데이터 생성 📊
 
-#### Option A: Python 스크립트로 생성
+#### 1-1. Python 스크립트 파일 생성
 
-`create_dummy_db.py` 파일을 만들어요:
+**방법 A: vi/vim 에디터 사용 (추천)**
+
+```bash
+# vi 에디터로 파일 생성
+vi create_dummy_db.py
+```
+
+vi 에디터가 열리면:
+1. `i` 키를 눌러 입력 모드로 전환
+2. 아래 Python 코드를 **복사하여 붙여넣기** (Cmd+V)
+3. `ESC` 키를 눌러 명령 모드로 전환
+4. `:wq` 입력 후 `Enter` (저장하고 종료)
+
+**방법 B: cat 명령어 사용 (vi가 어려우면)**
+
+```bash
+cat > create_dummy_db.py << 'EOF'
+# [아래 Python 코드 전체를 여기에 붙여넣기]
+EOF
+```
+
+**방법 C: 텍스트 에디터 사용 (가장 쉬움)**
+
+```bash
+# VS Code나 다른 에디터로 열기
+open -a "Visual Studio Code" create_dummy_db.py
+# 또는
+open -e create_dummy_db.py  # TextEdit로 열기
+```
+
+------
+
+#### 1-2. Python 코드 작성
+
+`create_dummy_db.py` 파일에 다음 코드를 작성하세요:
 
 ```python
 import sqlite3
@@ -213,24 +275,68 @@ print("✅ products.db 생성 완료!")
 print(f"총 {len(dummy_products)}개의 상품이 등록되었습니다.")
 ```
 
-**실행:**
+------
+
+#### 1-3. 파일 생성 확인
 
 ```bash
+# 파일이 제대로 생성되었는지 확인
+ls -lh create_dummy_db.py
+# -rw-r--r--  1 user  staff   1.2K Dec 13 20:00 create_dummy_db.py
+
+# 파일 내용 미리보기 (처음 5줄)
+head -5 create_dummy_db.py
+# import sqlite3
+# from datetime import datetime
+# ...
+```
+
+------
+
+#### 1-4. 스크립트 실행
+
+```bash
+# 현재 디렉토리 확인 (중요!)
+pwd
+# /Users/yourname/projects/mcp-practice
+
 # 스크립트 실행
 python3 create_dummy_db.py
 
 # 출력:
 # ✅ products.db 생성 완료!
 # 총 10개의 상품이 등록되었습니다.
-
-# DB 파일 생성 확인
-ls -lh products.db
-# -rw-r--r--  1 user  staff    20K Dec 13 19:40 products.db
 ```
 
 ------
 
-#### Option B: SQL로 직접 생성
+#### 1-5. DB 파일 및 데이터 확인
+
+```bash
+# DB 파일 생성 확인
+ls -lh products.db
+# -rw-r--r--  1 user  staff    20K Dec 13 20:00 products.db ✅
+
+# 데이터 개수 확인
+sqlite3 products.db "SELECT COUNT(*) FROM products;"
+# 10
+
+# 가장 비싼 상품 3개 조회
+sqlite3 products.db "SELECT name, price FROM products ORDER BY price DESC LIMIT 3;"
+# MacBook Pro M3|2590000
+# Studio Display|2090000
+# iPhone 15 Pro|1550000
+```
+
+**⚠️ 트러블슈팅:**
+- 만약 `can't open file` 오류가 발생하면:
+  - `pwd`로 현재 위치 확인
+  - `ls create_dummy_db.py`로 파일 존재 확인
+  - 파일이 없다면 위 과정 다시 진행
+
+------
+
+#### Option B: SQL로 직접 생성 (고급)
 
 ```bash
 # SQLite 쉘 실행
