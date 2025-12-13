@@ -69,7 +69,7 @@ source $HOME/.local/bin/env.fish
 **확인:**
 ```bash
 uvx --version
-# uvx 0.9.17
+# uvx 0.9.17 (2b5d65e61 2025-12-09)
 ```
 
 #### 방법 2: 쉘 설정 파일에 영구 등록 (권장)
@@ -133,7 +133,7 @@ source ~/.zshrc
 
 # 3. 정상 동작 확인
 uvx --version
-# ✅ uvx 0.9.17
+# ✅ uvx 0.9.17 (2b5d65e61 2025-12-09)
 
 # 4. MCP Server 실행 테스트
 uvx mcp-server-sqlite --help
@@ -168,6 +168,7 @@ uvx mcp-server-sqlite --help
   - [x] Claude Desktop 설치
   - [x] Python 설치
   - [x] UV 설치 ✅ (트러블슈팅 완료)
+    - 설치 버전: **uvx 0.9.17 (2b5d65e61 2025-12-09)**
   - [ ] SQLite 확인
 - [ ] Step 1: 더미 DB 생성
 - [ ] Step 2: MCP Server 구동
