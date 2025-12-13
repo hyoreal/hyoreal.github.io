@@ -9,6 +9,21 @@
 
 ---
 
+## 🖥️ 실습 환경
+
+### 하드웨어 & OS
+- **CPU**: Apple Silicon (aarch64-apple-darwin)
+- **OS**: macOS
+- **Shell**: zsh (기본)
+
+### 소프트웨어 버전
+- **Python**: (버전 확인 예정)
+- **UV**: 0.9.17 (2b5d65e61 2025-12-09)
+- **SQLite**: 3.39.4 (2022-09-07)
+- **Claude Desktop**: (버전 확인 예정)
+
+---
+
 ## 🚨 Issue 1: UV 설치 시 .bash_profile Permission Denied
 
 **발생 시점**: 2025-12-13 (Step 2: Python & UV 설치)
@@ -169,7 +184,8 @@ uvx mcp-server-sqlite --help
   - [x] Python 설치
   - [x] UV 설치 ✅ (트러블슈팅 완료)
     - 설치 버전: **uvx 0.9.17 (2b5d65e61 2025-12-09)**
-  - [ ] SQLite 확인
+  - [x] SQLite 확인 ✅
+    - 설치 버전: **SQLite 3.39.4 (2022-09-07)**
 - [ ] Step 1: 더미 DB 생성
 - [ ] Step 2: MCP Server 구동
 - [ ] Step 3: Claude Desktop 설정
