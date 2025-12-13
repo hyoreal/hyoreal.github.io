@@ -418,6 +418,245 @@ ls -lh
 
 ---
 
+## 🚨 Issue 3: MCP Server가 vi 명령어를 JSON으로 파싱 시도
+
+**발생 시점**: 2025-12-13 (Step 2: MCP Server 구동)
+
+### 증상
+
+```bash
+$ uvx mcp-server-sqlite --db-path ./products.db
+
+Installed 36 packages in 45ms
+vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: expected value at line 1 column 1 
+  [type=json_invalid, input_value='vi ~/Library/Application...e_desktop_config.json\n', input_type=str]
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
+
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0
+```
+
+### 원인
+
+1. **MCP Server가 정상 실행됨** (패키지 36개 설치 완료)
+2. **잘못된 입력**: MCP Server가 실행 중인 상태에서 `vi` 명령어를 입력함
+3. **JSON-RPC 프로토콜 위반**: MCP Server는 `stdin`으로 JSON-RPC 메시지를 기다리는데, `vi` 명령어가 입력되어 JSON 파싱 실패
+
+**개발자 비유:**
+```java
+// REST API 서버가 JSON을 기다리는데 HTML을 보낸 상황
+@PostMapping("/api")
+public Response handleRequest(@RequestBody String json) {
+    // 기대: {"action": "query"}
+    // 실제: "vi ~/Library/..."
+    // 결과: JSON 파싱 에러 ❌
+}
+
+// MCP Server도 동일
+// 기대: {"jsonrpc":"2.0", "method":"initialize", ...}
+// 실제: "vi ~/Library/..."
+// 결과: Invalid JSON ❌
+```
+
+**MCP Server의 동작 방식:**
+```java
+// MCP Server는 stdio(표준 입출력)로 통신
+public class MCPServer {
+    public void run() {
+        while (true) {
+            // stdin에서 JSON-RPC 메시지 대기
+            String input = readFromStdin();
+            
+            // JSON으로 파싱 시도
+            JSONRPCMessage message = parseJSON(input);
+            
+            // 처리
+            handleMessage(message);
+        }
+    }
+}
+
+// vi 명령어가 입력되면
+// parseJSON("vi ~/Library/...") → ❌ JSON 파싱 실패!
+```
+
+### 해결 방법
+
+#### 핵심 이해: MCP Server는 "백그라운드 서비스"
+
+MCP Server는 터미널에서 직접 실행하는 게 아니라, **Claude Desktop이 자동으로 실행하는 백그라운드 프로세스**예요.
+
+```java
+// 잘못된 이해
+// "MCP Server를 내가 직접 실행하고, Claude에 연결한다" ❌
+
+// 올바른 이해
+// "Claude Desktop이 MCP Server를 자동으로 실행한다" ✅
+
+public class ClaudeDesktop {
+    public void start() {
+        // 설정 파일 읽기
+        Config config = readConfig("claude_desktop_config.json");
+        
+        // MCP Server 자동 실행
+        for (ServerConfig server : config.getMcpServers()) {
+            Process process = Runtime.exec(server.getCommand());
+            // MCP Server가 백그라운드에서 실행됨
+        }
+    }
+}
+```
+
+#### 올바른 실습 순서
+
+**Step 2-1: MCP Server 수동 테스트 (선택 사항)**
+
+```bash
+# 프로젝트 디렉토리에서
+cd ~/projects/mcp-practice
+
+# MCP Server 실행 (테스트만)
+uvx mcp-server-sqlite --db-path ./products.db
+
+# 출력:
+# Installed 36 packages in 45ms
+# [서버가 대기 중... 여기서 멈춤]
+
+# 테스트 완료! Ctrl+C로 종료
+# ^C (Ctrl+C 입력)
+```
+
+**⚠️ 주의:**
+- 이 상태에서는 아무것도 입력하지 마세요!
+- MCP Server는 JSON-RPC 메시지만 이해해요
+- 일반 명령어(`vi`, `ls` 등)를 입력하면 JSON 파싱 에러 발생
+
+**Step 2-2: Claude Desktop 설정 (핵심)**
+
+```bash
+# 새 터미널 열기 (Cmd+T) 또는 MCP Server 종료 후
+
+# 설정 파일 수정
+vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
+
+# 또는 VS Code로
+open -a "Visual Studio Code" ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+**설정 파일 내용:**
+
+```json
+{
+  "mcpServers": {
+    "sqlite": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "/Users/username/projects/mcp-practice/products.db"
+      ]
+    }
+  }
+}
+```
+
+**⚠️ 중요: 절대 경로 사용**
+
+```bash
+# 절대 경로 확인
+cd ~/projects/mcp-practice
+realpath products.db
+
+# 출력 예시:
+# /Users/username/projects/mcp-practice/products.db
+
+# 이 경로를 설정 파일에 사용!
+```
+
+**Step 2-3: Claude Desktop 재시작**
+
+```bash
+# 1. Claude Desktop 완전 종료
+# Cmd + Q (강제 종료)
+
+# 2. 다시 실행
+open -a "Claude"
+
+# 3. Claude Desktop이 자동으로 MCP Server 실행
+# → 이제 백그라운드에서 동작 중!
+```
+
+### 적용한 해결책
+
+```bash
+# 1. MCP Server 테스트 (Ctrl+C로 종료)
+cd ~/projects/mcp-practice
+uvx mcp-server-sqlite --db-path ./products.db
+# [대기 중...]
+# ^C (종료)
+
+# 2. 절대 경로 확인
+realpath products.db
+# /Users/username/projects/mcp-practice/products.db
+
+# 3. Claude Desktop 설정
+vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
+
+# 내용:
+{
+  "mcpServers": {
+    "sqlite": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "/Users/username/projects/mcp-practice/products.db"
+      ]
+    }
+  }
+}
+
+# 4. Claude Desktop 재시작
+# Cmd+Q → 종료
+# open -a "Claude" → 실행
+
+# 5. 연결 확인
+# Claude Desktop 하단에 🔌 아이콘 확인
+```
+
+### 교훈
+
+1. **MCP Server는 백그라운드 서비스**
+   - 직접 실행하는 게 아니라 Claude Desktop이 실행
+   - Java 비유: Tomcat 서버 (직접 명령 입력 안 함)
+   
+2. **stdio는 JSON-RPC 전용**
+   - 일반 명령어 입력하면 안 됨
+   - REST API처럼 정해진 프로토콜만 사용
+   
+3. **수동 테스트는 선택 사항**
+   - MCP Server가 잘 동작하는지만 확인
+   - 확인 후 바로 Ctrl+C로 종료
+   
+4. **절대 경로 필수**
+   - `./products.db` (상대 경로) ❌
+   - `/Users/username/projects/mcp-practice/products.db` (절대 경로) ✅
+   - Claude Desktop은 다른 디렉토리에서 실행되므로
+
+5. **설정 파일 수정 시 새 터미널 사용**
+   - MCP Server 실행 중인 터미널에서는 명령어 입력 금지
+   - 새 터미널 탭 열기 (Cmd+T)
+
+### 다음 단계
+
+- ✅ MCP Server 정상 동작 확인
+- ✅ Claude Desktop 설정 완료
+- 🎯 다음: Claude Desktop에서 테스트 (Step 4)
+
+---
+
 ## 📝 실습 진행 상황
 
 - [x] Prerequisites 준비
@@ -431,7 +670,9 @@ ls -lh
 - [x] Step 1: 더미 DB 생성 ✅ (트러블슈팅 완료)
   - 프로젝트 디렉토리: **~/projects/mcp-practice/**
   - DB 파일: **products.db (10개 상품)**
-- [ ] Step 2: MCP Server 구동
+- [x] Step 2: MCP Server 구동 ✅ (트러블슈팅 완료)
+  - MCP Server: **mcp-server-sqlite (36 packages)**
+  - 동작 방식 이해: **백그라운드 서비스**
 - [ ] Step 3: Claude Desktop 설정
 - [ ] Step 4: 테스트
 
