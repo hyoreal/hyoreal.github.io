@@ -16,6 +16,7 @@
 - **예시**: 
   - `2025-12-13-[Spring]-JPA-기초-정리.md`
   - `2025-12-13-[Error-Log]-Gradle-빌드-실패-해결.md`
+  - `2025-12-13-[AI 기초]-백엔드-개발자를-위한-LLM-이해하기.md`
 - **규칙**:
   - 날짜는 하이픈으로 구분 (YYYY-MM-DD)
   - 카테고리는 대괄호로 감싸기
@@ -29,7 +30,7 @@
 
 모든 게시글 상단에 다음 형식의 YAML 헤더를 반드시 포함하세요:
 
-```yaml
+\`\`\`yaml
 ---
 layout: post
 
@@ -47,20 +48,25 @@ tags: [태그1, 태그2]
 
 
 ---
-```
+\`\`\`
 
 ### 필수 항목 설명
-- `layout`: 항상 `post`
-- `toc`: 목차 표시 여부, 기본값 `true`
-- `title`: 대괄호로 카테고리를 포함한 제목 (예: `"[Spring] JPA 기초"`)
-- `comments`: 댓글 활성화 여부, 기본값 `true`
-- `categories`: 배열 형태로 작성, 최대 2~3개 권장
-- `tags`: 배열 형태로 작성, 관련 키워드 나열
+- \`layout\`: 항상 \`post\`
+- \`toc\`: 목차 표시 여부, 기본값 \`true\`
+- \`title\`: 대괄호로 카테고리를 포함한 제목 (예: \`"[Spring] JPA 기초"\`)
+- \`date\`: **필수! 같은 날짜 포스트 정렬을 위해 시간까지 반드시 포함**
+  - 형식: \`YYYY-MM-DD HH:MM:SS +0900\`
+  - 예시: \`2025-12-13 19:25:00 +0900\`
+  - 같은 날짜에 여러 글이 있으면 시간으로 정렬됨
+- \`comments\`: 댓글 활성화 여부, 기본값 \`true\`
+- \`categories\`: 배열 형태로 작성, 최대 2~3개 권장
+- \`tags\`: 배열 형태로 작성, 관련 키워드 나열
 
 ### 주의사항
 - YAML 항목 사이에 빈 줄 삽입
-- 콜론(`:`) 뒤에 공백 필수
-- 제목에 콜론(`:`)이 들어갈 경우 따옴표로 감싸기
+- 콜론(\`:\`) 뒤에 공백 필수
+- 제목에 콜론(\`:\`)이 들어갈 경우 따옴표로 감싸기
+- **date 필드는 절대 생략 불가!** (같은 날짜 포스트 순서 보장)
 
 ---
 
@@ -71,44 +77,28 @@ tags: [태그1, 태그2]
 - 예시: "이 방법을 사용하면 문제를 해결할 수 있어요", "설정을 변경해보았습니다"
 
 ### 문단 구조
-- 제목은 `###` (H3)로 시작
-- 소제목 구분 시 `------` 구분선 사용
-- 목록은 `-` 또는 숫자 리스트 사용
-- 단계별 설명이 필요한 경우 `### 1. 단계명` 형식 활용
+- 제목은 \`###\` (H3)로 시작
+- 소제목 구분 시 \`------\` 구분선 사용
+- 목록은 \`-\` 또는 숫자 리스트 사용
+- 단계별 설명이 필요한 경우 \`### 1. 단계명\` 형식 활용
 
 ### 코드 블록
 - 코드 블록은 반드시 언어 태그 포함
-  ```java
-  public class Example {
-      // 코드 내용
-  }
-  ```
 - 명령어는 코드 블록 없이 간단히 표시 가능
 - 출력 결과는 주석이나 별도 섹션으로 표시
-  ```
-  > 출력
-  > 결과 내용
-  ```
 
 ### 이미지 삽입
 - 외부 이미지 URL 사용 (GitHub, Velog, Kakao CDN 등)
-- 형식: `![이미지 설명](이미지_URL)`
+- 형식: \`![이미지 설명](이미지_URL)\`
 - 이미지 설명은 간결하게 작성
 
 ### 이모지 및 강조
 - 이모지는 적절히 사용 (🚨, 🔗, 😂 등)
 - 중요 내용 강조 시 HTML 인라인 스타일 사용 가능
-  ```html
-  <span style='color: #C50017;'>에러 발생</span>
-  ```
-- 또는 마크다운 강조 (`**굵게**`, `*기울임*`)
+- 또는 마크다운 강조 (\`**굵게**\`, \`*기울임*\`)
 
 ### 참고 자료
 - 글 하단에 참고한 블로그나 문서 링크 명시
-  ```markdown
-  > 참고 블로그
-  > https://example.com
-  ```
 
 ---
 
@@ -122,9 +112,9 @@ tags: [태그1, 태그2]
 
 ### [Error-Log] 에러 해결 포스팅
 - **구조**:
-  1. `### 에러 발생 🚨` - 문제 상황 설명
-  2. `### 문제 파악 🚒` - 원인 분석
-  3. `### 해결 🧐` - 해결 방법
+  1. \`### 에러 발생 🚨\` - 문제 상황 설명
+  2. \`### 문제 파악 🚒\` - 원인 분석
+  3. \`### 해결 🧐\` - 해결 방법
 - 에러 메시지는 코드 블록으로 표시
 - 해결 전후 비교 제시
 
@@ -145,14 +135,33 @@ tags: [태그1, 태그2]
 - 명령어와 설정 파일 예시 제공
 - 주의사항 및 트러블슈팅 포함
 
-### [AI], [Machine Learning], [Deep Learning] AI 관련 포스팅
+### [AI 기초], [AI 실전], [AI 도구] AI 관련 포스팅
+
+#### 학습 단계별 카테고리 분류
+AI 관련 포스팅은 학습 단계에 따라 카테고리를 명확히 구분:
+
+**[AI 기초]** - 이론 및 개념 학습
+- LLM, Transformer 구조 이해
+- Token, Context Window, Hallucination 등 핵심 개념
+- 개발자 관점의 원리 설명 (HTTP, DB, 함수 등에 비유)
+
+**[AI 실전]** - 프롬프트 엔지니어링 및 활용법
+- 프롬프트 작성 기법 (Temperature, Persona, CO-STAR)
+- 고급 테크닉 (Few-Shot, Chain of Thought)
+- 실무 활용 예시와 템플릿 제공
+
+**[AI 도구]** - 실무 도구 및 서비스 활용
+- Cursor, ChatGPT, Claude 등 구체적 도구 사용법
+- API 연동 및 자동화
+- 실전 프로젝트 적용 사례
+
+#### 작성 스타일
 - 개념 설명을 명확하고 쉽게 작성
-- 수식이 필요한 경우 LaTeX 문법 사용
-- 실습 코드와 결과를 함께 제공 (Colab, Jupyter 등)
-- 모델 아키텍처는 다이어그램이나 이미지로 시각화
-- 하이퍼파라미터 설정 및 학습 과정 상세 기록
-- 성능 평가 지표와 결과 분석 포함
-- 주요 라이브러리: TensorFlow, PyTorch, scikit-learn, Hugging Face 등
+- **개발자 비유 적극 활용** (HTTP, DB, 함수, 클래스 등)
+- 실습 코드와 결과를 함께 제공
+- Bad Prompt vs Good Prompt 비교
+- 실무에서 바로 사용 가능한 템플릿 제공
+- 주요 라이브러리: OpenAI API, LangChain, Hugging Face 등
 
 ---
 
@@ -160,8 +169,9 @@ tags: [태그1, 태그2]
 
 - 반말 사용 금지
 - Front Matter 누락 금지
+- **date 필드 누락 금지** (같은 날짜 정렬 문제 발생)
 - 파일명 규칙 위반 금지
-- 코드 블록 언어 태그 누락 금지 (```java, ```yaml 등 필수)
+- 코드 블록 언어 태그 누락 금지
 - 출처 없는 외부 자료 인용 금지
 - 본명 사용 금지 (가명으로 대체. 효진 사용 금지.)
 - 글 마지막에 "다음 포스팅에서는 ~~ 다뤄보겠습니다." 금지
@@ -172,43 +182,43 @@ tags: [태그1, 태그2]
 
 글 작성 완료 전 다음을 확인하세요:
 
-- [ ] 파일명이 `YYYY-MM-DD-[카테고리]-제목.md` 형식인가?
+- [ ] 파일명이 \`YYYY-MM-DD-[카테고리]-제목.md\` 형식인가?
 - [ ] Front Matter가 올바르게 작성되었는가?
+- [ ] **date 필드에 시간까지 포함되었는가?** (HH:MM:SS +0900)
 - [ ] 말투가 해요체로 일관되는가?
 - [ ] 코드 블록에 언어 태그가 포함되었는가?
-- [ ] 제목 구조가 명확한가? ###, ------)
+- [ ] 제목 구조가 명확한가?
 - [ ] 이미지 URL이 정상 작동하는가?
 - [ ] 참고 자료 출처가 명시되었는가?
 - [ ] 오타 및 문법 오류가 없는가?
 
 ---
 
-## 6. Git Automation & Workflow (Mandatory)
+## 7. Git Automation & Workflow (Mandatory)
 
-After you successfully create or update a blog post file, you **MUST** automatically execute (or suggest) the following terminal commands to push the changes to GitHub.
+### 7.1. Commit Message Convention
+- Format: \`docs: [Blog Title] 포스팅 작성\`
+- Logic: Extract the \`title\` value from the Front Matter (YAML) of the created file.
 
-### 6.1. Commit Message Convention
-- Format: `docs: [Blog Title] 포스팅 작성`
-- Logic: Extract the `title` value from the Front Matter (YAML) of the created file.
-  - Example: If `title: "Spring Security Deep Dive"`, the commit message must be `"docs: Spring Security Deep Dive 포스팅 작성"`.
-
-### 6.2. Execution Steps
+### 7.2. Execution Steps
 Once the markdown file is saved, proceed with these commands immediately:
-1. `git add [Exact File Path]` (Do not use `git add .` to avoid staging unrelated files)
-2. `git commit -m "docs: [Extracted Title] 포스팅 작성"`
-3. `git push origin main` (Check if the branch is 'main' or 'master' first)
+1. \`git add [Exact File Path]\`
+2. \`git commit -m "docs: [Extracted Title] 포스팅 작성"\`
+3. \`git push origin main\`
 
-### 6.3. Error Handling
+### 7.3. Error Handling
 - If the push fails due to a conflict, alert the user and do not force push.
 
-## 7. Jekyll Chirpy 테마 특화 설정
+---
+
+## 8. Jekyll Chirpy 테마 특화 설정
 
 이 블로그는 **Jekyll Chirpy** 테마를 사용합니다.
 
 ### 설정 정보
-- 언어: `ko-KR`
-- 타임존: `Asia/Seoul`
-- 테마 모드: `dark`
+- 언어: \`ko-KR\`
+- 타임존: \`Asia/Seoul\`
+- 테마 모드: \`dark\`
 - TOC: 기본 활성화
 - 페이지네이션: 10개 게시글/페이지
 
@@ -219,22 +229,29 @@ Once the markdown file is saved, proceed with these commands immediately:
 
 ---
 
-## 8. 실행 시 행동 지침
+## 9. 실행 시 행동 지침
 
 ### 새 글 작성 요청 시
-1. 주제와 카테고리 확인
+1. 주제와 카테고리 확인 (AI 시리즈라면 [AI 기초/실전/도구] 중 선택)
 2. 오늘 날짜로 파일명 생성
-3. Front Matter 작성
+3. Front Matter 작성 (**date 필드에 시간까지 포함**)
 4. 카테고리에 맞는 구조로 본문 작성
 5. 체크리스트 확인 후 파일 저장
+6. Git commit & push 자동 실행
 
 ### 기존 글 수정 요청 시
 1. 해당 파일 읽기
-2. Front Matter 유지
+2. Front Matter 유지 (date는 변경하지 않음)
 3. 기존 스타일 유지하며 수정
-4. 날짜는 변경하지 않음 (파일명 유지)
+4. 파일명은 변경하지 않음
+
+### 같은 날짜에 여러 글 작성 시
+1. Front Matter의 date 필드에 시간을 5분 간격으로 증가시켜 순서 보장
+2. 예시:
+   - 첫 번째 글: \`date: 2025-12-13 19:00:00 +0900\`
+   - 두 번째 글: \`date: 2025-12-13 19:05:00 +0900\`
+   - 세 번째 글: \`date: 2025-12-13 19:10:00 +0900\`
 
 ---
 
 **이 규칙을 준수하여 hyoreal 블로그의 정체성과 품질을 유지하세요.**
-
