@@ -5,6 +5,8 @@ toc: true
 
 title: "[AI] 개발자가 꼭 알아야 할 LLM의 메모리 구조 - Context Window 완벽 이해"
 
+date: 2025-12-13 18:50:00 +0900
+
 comments: true
 
 categories: [AI, Machine Learning]

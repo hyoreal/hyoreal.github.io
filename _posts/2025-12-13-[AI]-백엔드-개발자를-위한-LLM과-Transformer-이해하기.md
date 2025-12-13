@@ -5,7 +5,7 @@ toc: true
 
 title: "[AI] 백엔드 개발자를 위한 LLM과 Transformer 이해하기"
 
-date: 2025-12-13 18:42:00 +0900
+date: 2025-12-13 19:05:00 +0900
 
 comments: true
 

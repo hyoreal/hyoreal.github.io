@@ -5,6 +5,8 @@ toc: true
 
 title: "[AI] 내 명령을 AI가 못 알아듣는 이유 - 프롬프트 엔지니어링 완벽 가이드"
 
+date: 2025-12-13 18:56:00 +0900
+
 comments: true
 
 categories: [AI, Machine Learning]

@@ -5,6 +5,8 @@ toc: true
 
 title: "[AI] AI에게 일을 제대로 시키는 노하우 - Zero-shot, Few-shot, CoT 완벽 정리"
 
+date: 2025-12-13 19:01:00 +0900
+
 comments: true
 
 categories: [AI, Machine Learning]
