@@ -18,7 +18,7 @@ tags: [AI, MCP, Claude, SQLite, 실습, Hands-On, Model Context Protocol]
 
 ### 백문이 불여일타, 이제 직접 연결해봅시다 💻
 
-[지난 포스팅](링크)에서 MCP(Model Context Protocol)의 이론을 배웠어요. JDBC처럼 AI와 데이터 소스를 표준 방식으로 연결하는 프로토콜이라는 걸 알았죠.
+[지난 포스팅](https://hyoreal.github.io/posts/AI-%EA%B8%B0%EC%B4%88-MCP-AI%EC%97%90%EA%B2%8C-%EC%86%90%EA%B3%BC-%EB%B0%9C%EC%9D%84-%EB%8B%AC%EC%95%84%EC%A3%BC%EB%8A%94-%ED%91%9C%EC%A4%80-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4/)에서 MCP(Model Context Protocol)의 이론을 배웠어요. JDBC처럼 AI와 데이터 소스를 표준 방식으로 연결하는 프로토콜이라는 걸 알았죠.
 
 하지만 **이론만으로는 부족해요!** 마치 JDBC를 처음 배울 때 `Connection`, `Statement` 개념만 읽고 끝내지 않듯이, MCP도 직접 손으로 해봐야 진짜 이해가 돼요.
 
