@@ -657,6 +657,232 @@ vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
 
 ---
 
+## 🚨 Issue 4: Claude가 DB에 접근할 수 없다고 답변
+
+**발생 시점**: 2025-12-13 (Step 4: Claude Desktop 테스트)
+
+### 증상
+
+Claude Desktop에서 "내 DB에 있는 상품 개수를 세어줘"라고 요청했을 때:
+
+```
+안녕하세요! 데이터베이스에 있는 상품 개수를 세어드리고 싶지만, 
+제가 직접 데이터베이스에 접근할 수 있는 권한은 없습니다.
+하지만 다음과 같은 방법으로 도움을 드릴 수 있습니다:
+1. SQL 쿼리 작성
+2. 파일 기반 데이터 확인
+3. 스크립트 작성
+...
+```
+
+**기대한 동작:**
+- Claude가 MCP를 통해 `products.db`를 직접 조회
+- 상품 개수(10개)를 바로 답변
+
+**실제 동작:**
+- Claude가 MCP Server를 인식하지 못함
+- DB 접근 불가능하다고 답변
+
+### 원인
+
+1. **Claude Desktop 설정 파일은 정상**: `claude_desktop_config.json`에 MCP Server 설정이 올바르게 되어 있음
+2. **`uvx` 명령어를 찾을 수 없음**: Claude Desktop이 실행될 때 PATH에 `~/.local/bin`이 포함되지 않음
+3. **결과**: Claude Desktop이 MCP Server를 실행하려고 시도하지만 `uvx` 명령어를 찾지 못해 실패
+
+**개발자 비유:**
+```java
+// application.yml에 설정은 있지만
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC  // ✅ 설정 있음
+
+// 실제로는 JDBC Driver JAR가 CLASSPATH에 없음
+// → ClassNotFoundException 발생 ❌
+
+// MCP도 동일
+// claude_desktop_config.json에 설정은 있지만
+{
+  "command": "uvx"  // ✅ 설정 있음
+}
+
+// 실제로는 uvx가 PATH에 없음
+// → Command not found 발생 ❌
+```
+
+**Claude Desktop의 실행 환경:**
+```java
+// Claude Desktop은 GUI 애플리케이션
+// 쉘의 PATH 설정을 따르지 않음!
+
+// 터미널에서 실행 (PATH 포함)
+$ echo $PATH
+/usr/local/bin:/usr/bin:/bin:/Users/me/.local/bin  // ✅ uvx 경로 포함
+
+// Claude Desktop에서 실행 (시스템 기본 PATH만)
+PATH=/usr/bin:/bin:/usr/sbin:/sbin  // ❌ ~/.local/bin 없음
+```
+
+### 해결 방법
+
+#### 방법 1: 전체 경로 사용 (권장)
+
+Claude Desktop 설정 파일에서 `uvx` 대신 **전체 경로**를 사용해요.
+
+**Step 1: `uvx` 전체 경로 확인**
+
+```bash
+# uvx 위치 확인
+ls -la ~/.local/bin/uvx
+# -rwxr-xr-x  1 user  staff  336672 Dec 10 07:50 /Users/username/.local/bin/uvx
+
+# 또는
+which uvx
+# /Users/username/.local/bin/uvx
+```
+
+**Step 2: 설정 파일 수정**
+
+```bash
+# 설정 파일 열기
+vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+**수정 전:**
+```json
+{
+  "mcpServers": {
+    "sqlite": {
+      "command": "uvx",  // ❌ PATH에 없으면 실행 실패
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "/Users/username/projects/mcp-practice/products.db"
+      ]
+    }
+  }
+}
+```
+
+**수정 후:**
+```json
+{
+  "mcpServers": {
+    "sqlite": {
+      "command": "/Users/username/.local/bin/uvx",  // ✅ 전체 경로 사용
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "/Users/username/projects/mcp-practice/products.db"
+      ]
+    }
+  }
+}
+```
+
+**⚠️ 중요: `username`을 실제 사용자명으로 변경!**
+
+```bash
+# 현재 사용자명 확인
+whoami
+# hyoreal51
+
+# 또는
+echo $USER
+# hyoreal51
+```
+
+**Step 3: Claude Desktop 재시작**
+
+```bash
+# 1. Claude Desktop 완전 종료
+# Cmd + Q (강제 종료)
+
+# 2. 다시 실행
+open -a "Claude"
+
+# 3. MCP 연결 확인
+# 하단에 🔌 아이콘 확인
+```
+
+#### 방법 2: 시스템 PATH에 추가 (고급)
+
+GUI 애플리케이션도 인식할 수 있도록 시스템 레벨 PATH 설정:
+
+```bash
+# /etc/paths.d/ 디렉토리 확인
+ls -la /etc/paths.d/
+
+# 새 파일 생성 (sudo 필요)
+sudo sh -c 'echo "/Users/username/.local/bin" > /etc/paths.d/uvx'
+
+# 또는 launchd 설정 (더 복잡)
+# ~/.MacOSX/environment.plist 파일 생성
+```
+
+**⚠️ 주의:**
+- 시스템 레벨 설정은 권한이 필요하고 복잡해요
+- 방법 1(전체 경로)이 더 간단하고 안전해요
+
+### 적용한 해결책
+
+```bash
+# 1. uvx 전체 경로 확인
+ls -la ~/.local/bin/uvx
+# -rwxr-xr-x  1 hyoreal51  staff  336672 Dec 10 07:50 /Users/hyoreal51/.local/bin/uvx
+
+# 2. 설정 파일 수정
+vi ~/Library/Application\ Support/Claude/claude_desktop_config.json
+
+# 수정 내용:
+{
+  "mcpServers": {
+    "sqlite": {
+      "command": "/Users/hyoreal51/.local/bin/uvx",  // 전체 경로로 변경
+      "args": [
+        "mcp-server-sqlite",
+        "--db-path",
+        "/Users/hyoreal51/projects/mcp-practice/products.db"
+      ]
+    }
+  }
+}
+
+# 3. Claude Desktop 재시작
+# Cmd+Q → 종료
+# open -a "Claude" → 실행
+
+# 4. 테스트
+# "내 DB에 있는 상품 개수를 세어줘"
+# → ✅ "products 테이블에 총 10개의 상품이 있습니다"
+```
+
+### 교훈
+
+1. **GUI 애플리케이션은 쉘 PATH를 따르지 않음**
+   - 터미널에서 `uvx`가 동작해도 Claude Desktop은 못 찾을 수 있음
+   - Java 비유: IDE에서 실행할 때와 터미널에서 실행할 때 CLASSPATH가 다를 수 있음
+   
+2. **전체 경로 사용이 안전함**
+   - 상대 경로나 PATH 의존성 제거
+   - 명확하고 예측 가능한 동작
+   
+3. **설정 파일 수정 후 반드시 재시작**
+   - Claude Desktop은 시작 시에만 설정 파일을 읽음
+   - 재시작하지 않으면 변경사항 적용 안 됨
+   
+4. **MCP 연결 확인 방법**
+   - Claude Desktop 하단의 🔌 아이콘 확인
+   - 클릭해서 "Connected MCP Servers" 목록 확인
+
+### 다음 단계
+
+- ✅ MCP Server 정상 동작 확인
+- ✅ Claude Desktop 설정 완료 (전체 경로 사용)
+- ✅ Claude Desktop 재시작
+- 🎯 다음: Claude Desktop에서 실제 테스트 (Step 4)
+
+---
+
 ## 📝 실습 진행 상황
 
 - [x] Prerequisites 준비
