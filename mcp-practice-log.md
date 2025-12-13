@@ -17,7 +17,7 @@
 - **Shell**: zsh (기본)
 
 ### 소프트웨어 버전
-- **Python**: (버전 확인 예정)
+- **Python**: 3.14.2 (Homebrew)
 - **UV**: 0.9.17 (2b5d65e61 2025-12-09)
 - **SQLite**: 3.39.4 (2022-09-07)
 - **Claude Desktop**: (버전 확인 예정)
@@ -177,16 +177,260 @@ uvx mcp-server-sqlite --help
 
 ---
 
+## 🚨 Issue 2: 파일을 찾을 수 없음 (No such file or directory)
+
+**발생 시점**: 2025-12-13 (Step 1: 더미 DB 생성)
+
+### 증상
+
+```bash
+$ python3 create_dummy_db.py
+
+/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: 
+can't open file '/Users/username/create_dummy_db.py': [Errno 2] No such file or directory
+```
+
+### 원인
+
+1. **파일이 실제로 존재하지 않음**: `create_dummy_db.py` 스크립트 파일을 아직 생성하지 않음
+2. **현재 위치 문제**: 홈 디렉토리(`~`)에서 실행했지만, 파일이 없는 상태
+
+**개발자 비유:**
+```java
+// Java 클래스 파일이 없는데 실행하려는 상황
+public class Main {
+    public static void main(String[] args) {
+        Class.forName("CreateDummyDB");  // ❌ ClassNotFoundException
+    }
+}
+
+// Python 스크립트가 없는데 실행하려는 상황
+python3 create_dummy_db.py  // ❌ FileNotFoundError
+```
+
+### 해결 방법
+
+#### 단계 1: 프로젝트 디렉토리 생성 및 이동
+
+```bash
+# MCP 실습용 디렉토리 생성
+mkdir -p ~/projects/mcp-practice
+cd ~/projects/mcp-practice
+
+# 현재 위치 확인
+pwd
+# /Users/username/projects/mcp-practice
+```
+
+#### 단계 2: Python 스크립트 파일 생성
+
+**Option A: vi/vim 에디터 사용**
+
+```bash
+vi create_dummy_db.py
+```
+
+그리고 아래 코드를 복사하여 붙여넣기 (실습 가이드에서 제공):
+
+```python
+import sqlite3
+from datetime import datetime
+
+# 1. DB 파일 생성 및 연결
+conn = sqlite3.connect('products.db')
+cursor = conn.cursor()
+
+# 2. 테이블 생성
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    stock INTEGER NOT NULL,
+    created_at TEXT NOT NULL
+)
+''')
+
+# 3. 더미 데이터 삽입
+dummy_products = [
+    ('MacBook Pro M3', 2590000, 'Laptop', 15, '2024-01-15'),
+    ('iPhone 15 Pro', 1550000, 'Phone', 30, '2024-02-20'),
+    ('AirPods Pro', 359000, 'Audio', 50, '2024-03-10'),
+    ('iPad Air', 929000, 'Tablet', 20, '2024-04-05'),
+    ('Apple Watch Ultra', 1149000, 'Wearable', 10, '2024-05-12'),
+    ('Magic Keyboard', 149000, 'Accessory', 40, '2024-06-01'),
+    ('Mac Mini M2', 799000, 'Desktop', 12, '2024-07-20'),
+    ('Studio Display', 2090000, 'Monitor', 8, '2024-08-15'),
+    ('HomePod Mini', 129000, 'Audio', 25, '2024-09-30'),
+    ('AirTag 4pack', 149000, 'Accessory', 100, '2024-10-10'),
+]
+
+cursor.executemany('''
+    INSERT INTO products (name, price, category, stock, created_at)
+    VALUES (?, ?, ?, ?, ?)
+''', dummy_products)
+
+# 4. 커밋 및 종료
+conn.commit()
+conn.close()
+
+print("✅ products.db 생성 완료!")
+print(f"총 {len(dummy_products)}개의 상품이 등록되었습니다.")
+```
+
+**Option B: echo와 heredoc 사용 (간편)**
+
+```bash
+cat > create_dummy_db.py << 'EOF'
+import sqlite3
+from datetime import datetime
+
+# 1. DB 파일 생성 및 연결
+conn = sqlite3.connect('products.db')
+cursor = conn.cursor()
+
+# 2. 테이블 생성
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    stock INTEGER NOT NULL,
+    created_at TEXT NOT NULL
+)
+''')
+
+# 3. 더미 데이터 삽입
+dummy_products = [
+    ('MacBook Pro M3', 2590000, 'Laptop', 15, '2024-01-15'),
+    ('iPhone 15 Pro', 1550000, 'Phone', 30, '2024-02-20'),
+    ('AirPods Pro', 359000, 'Audio', 50, '2024-03-10'),
+    ('iPad Air', 929000, 'Tablet', 20, '2024-04-05'),
+    ('Apple Watch Ultra', 1149000, 'Wearable', 10, '2024-05-12'),
+    ('Magic Keyboard', 149000, 'Accessory', 40, '2024-06-01'),
+    ('Mac Mini M2', 799000, 'Desktop', 12, '2024-07-20'),
+    ('Studio Display', 2090000, 'Monitor', 8, '2024-08-15'),
+    ('HomePod Mini', 129000, 'Audio', 25, '2024-09-30'),
+    ('AirTag 4pack', 149000, 'Accessory', 100, '2024-10-10'),
+]
+
+cursor.executemany('''
+    INSERT INTO products (name, price, category, stock, created_at)
+    VALUES (?, ?, ?, ?, ?)
+''', dummy_products)
+
+# 4. 커밋 및 종료
+conn.commit()
+conn.close()
+
+print("✅ products.db 생성 완료!")
+print(f"총 {len(dummy_products)}개의 상품이 등록되었습니다.")
+EOF
+```
+
+#### 단계 3: 파일 생성 확인
+
+```bash
+# 파일 존재 확인
+ls -lh create_dummy_db.py
+# -rw-r--r--  1 user  staff   1.2K Dec 13 20:00 create_dummy_db.py ✅
+
+# 파일 내용 미리보기
+head -5 create_dummy_db.py
+```
+
+#### 단계 4: 스크립트 실행
+
+```bash
+python3 create_dummy_db.py
+
+# 출력:
+# ✅ products.db 생성 완료!
+# 총 10개의 상품이 등록되었습니다.
+```
+
+#### 단계 5: DB 파일 확인
+
+```bash
+# DB 파일 생성 확인
+ls -lh products.db
+# -rw-r--r--  1 user  staff    20K Dec 13 20:00 products.db ✅
+
+# 데이터 확인
+sqlite3 products.db "SELECT COUNT(*) FROM products;"
+# 10
+
+# 가장 비싼 상품 3개 조회
+sqlite3 products.db "SELECT name, price FROM products ORDER BY price DESC LIMIT 3;"
+# MacBook Pro M3|2590000
+# Studio Display|2090000
+# iPhone 15 Pro|1550000
+```
+
+### 적용한 해결책
+
+```bash
+# 1. 프로젝트 디렉토리 생성
+mkdir -p ~/projects/mcp-practice
+cd ~/projects/mcp-practice
+
+# 2. 스크립트 파일 생성 (cat 사용)
+cat > create_dummy_db.py << 'EOF'
+[... Python 코드 ...]
+EOF
+
+# 3. 실행
+python3 create_dummy_db.py
+# ✅ products.db 생성 완료!
+# 총 10개의 상품이 등록되었습니다.
+
+# 4. 확인
+ls -lh
+# create_dummy_db.py  (1.2K)
+# products.db         (20K)
+```
+
+### 교훈
+
+1. **파일을 먼저 만들어야 실행 가능**
+   - Java 개발자 관점: `.java` 파일 없이 `javac` 실행 불가
+   
+2. **프로젝트 디렉토리를 먼저 만들자**
+   - 홈 디렉토리(`~`)에 파일 흩어지는 것 방지
+   - 체계적인 파일 관리
+   
+3. **작업 디렉토리 확인 습관**
+   - `pwd` 명령어로 현재 위치 확인
+   - `ls` 명령어로 파일 존재 확인
+
+4. **Python 버전 확인됨**
+   - Python 3.14.2가 Homebrew로 설치되어 있음
+   - `/opt/homebrew/Cellar/python@3.14/3.14.2/` 경로
+
+### 다음 단계
+
+- ✅ 프로젝트 디렉토리 생성
+- ✅ Python 스크립트 파일 생성
+- ✅ products.db 생성 완료 (10개 상품)
+- 🎯 다음: MCP Server 구동 (Step 2)
+
+---
+
 ## 📝 실습 진행 상황
 
 - [x] Prerequisites 준비
   - [x] Claude Desktop 설치
   - [x] Python 설치
+    - 설치 버전: **Python 3.14.2 (Homebrew)**
   - [x] UV 설치 ✅ (트러블슈팅 완료)
     - 설치 버전: **uvx 0.9.17 (2b5d65e61 2025-12-09)**
   - [x] SQLite 확인 ✅
     - 설치 버전: **SQLite 3.39.4 (2022-09-07)**
-- [ ] Step 1: 더미 DB 생성
+- [x] Step 1: 더미 DB 생성 ✅ (트러블슈팅 완료)
+  - 프로젝트 디렉토리: **~/projects/mcp-practice/**
+  - DB 파일: **products.db (10개 상품)**
 - [ ] Step 2: MCP Server 구동
 - [ ] Step 3: Claude Desktop 설정
 - [ ] Step 4: 테스트
