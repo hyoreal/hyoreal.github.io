@@ -11,7 +11,7 @@ comments: true
 
 categories: [AI 도구]
 
-tags: [AI, Cursor, Context Management, @Symbols, Refactoring, Productivity]
+tags: [AI, Cursor, Context Management, Symbols, Refactoring, Productivity]
 
 
 ---
