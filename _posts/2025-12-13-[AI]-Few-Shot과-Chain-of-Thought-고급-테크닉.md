@@ -9,7 +9,7 @@ date: 2025-12-13 11:00:00 +0900
 
 comments: true
 
-categories: [AI 실전]
+categories: [AI, Prompt Engineering]
 
 tags: [AI, Prompt, Few-Shot, CoT]
 
