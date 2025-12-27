@@ -20,12 +20,16 @@
       });
 
       if (typeof Toc !== 'undefined' && typeof $ !== 'undefined') {
-        $('#toc').empty();
+        var $toc = $('#toc');
+        $toc.empty();
 
         Toc.init({
-          $nav: $('#toc'),
+          $nav: $toc,
           $scope: $('article.post-content, .post-content, .content')
         });
+
+        // 라이브러리의 자동 재초기화 방지
+        $toc.removeAttr('data-toggle');
 
         $('body').scrollspy({ target: '#toc', offset: 120 });
       }
