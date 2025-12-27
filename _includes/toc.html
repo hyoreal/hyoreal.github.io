@@ -7,9 +7,31 @@
   <div id="toc-wrapper">
     <div id="toc-card">
       <div class="panel-heading">Contents</div>
-      <nav id="toc" data-toggle="toc"></nav>
+      <nav id="toc"></nav>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 숫자로 시작하는 헤더 ID에 접두어 추가 (ScrollSpy 호환성)
+      document.querySelectorAll('h2[id], h3[id], h4[id]').forEach(function (el) {
+        if (/^\d/.test(el.id)) {
+          el.id = 'section-' + el.id;
+        }
+      });
+
+      // Bootstrap-toc 초기화
+      if (typeof Toc !== 'undefined' && typeof $ !== 'undefined') {
+        Toc.init({
+          $nav: $('#toc'),
+          $scope: $('article.post-content, .post-content, .content')
+        });
+
+        // Scrollspy 초기화
+        $('body').scrollspy({ target: '#toc', offset: 120 });
+      }
+    });
+  </script>
 
   <style>
     #toc-wrapper {

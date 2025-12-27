@@ -12,18 +12,26 @@
         <div class="popular-posts-list">
             {% if use_popular_data %}
             {% for item in popular_data limit:5 %}
-            {% assign post = site.posts | where: "url", item.url | first %}
-            {% if post %}
+            {% assign item_slug = item.url | remove: "/posts/" | remove: "/" %}
+            {% assign matched_post = nil %}
+            {% for post in site.posts %}
+            {% assign post_slug = post.url | url_decode | remove: "/posts/" | remove: "/" %}
+            {% if post_slug == item_slug %}
+            {% assign matched_post = post %}
+            {% break %}
+            {% endif %}
+            {% endfor %}
+            {% if matched_post %}
             <div class="popular-post-item">
-                <a href="{{ post.url | relative_url }}" class="popular-post-link">
-                    <div class="popular-post-title">{{ post.title }}</div>
+                <a href="{{ matched_post.url | relative_url }}" class="popular-post-link">
+                    <div class="popular-post-title">{{ matched_post.title }}</div>
                     <div class="popular-post-meta">
-                        <span class="popular-post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                        <span class="popular-post-date">{{ matched_post.date | date: "%Y-%m-%d" }}</span>
                         {% if item.views > 0 %}
                         <span class="popular-post-views">· {{ item.views }} views</span>
                         {% endif %}
-                        {% if post.categories.size > 0 %}
-                        <span class="popular-post-category">· {{ post.categories[0] }}</span>
+                        {% if matched_post.categories.size > 0 %}
+                        <span class="popular-post-category">· {{ matched_post.categories[0] }}</span>
                         {% endif %}
                     </div>
                 </a>
