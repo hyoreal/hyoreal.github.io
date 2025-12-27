@@ -23,7 +23,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install googleapis
+        run: npm install @google-analytics/data
 
       - name: Fetch popular posts from GA4
         env:
