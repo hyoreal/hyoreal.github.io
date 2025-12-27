@@ -413,7 +413,7 @@ i {
   padding: 0 0.8rem;
   width: 100%;
 
-  #search-wrapper {
+  #sidebar-search-wrapper {
     display: flex;
     align-items: center;
     background: var(--search-wrapper-bg);
@@ -434,7 +434,7 @@ i {
       flex-shrink: 0;
     }
 
-    #search-input {
+    #sidebar-search-input {
       background: transparent;
       border: none;
       color: var(--text-color);
@@ -456,7 +456,7 @@ i {
 }
 
 [data-mode="dark"] .sidebar-search {
-  #search-wrapper {
+  #sidebar-search-wrapper {
     border-color: rgba(167, 139, 250, 0.25);
 
     &:focus-within {

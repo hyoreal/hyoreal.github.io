@@ -19,28 +19,58 @@
 <script src="{{ site.data.assets[origin].search.js | relative_url }}"></script>
 
 <script>
-SimpleJekyllSearch({
-  searchInput: document.getElementById('search-input'),
-  resultsContainer: document.getElementById('search-results'),
-  json: '{{ '/assets/js/data/search.json' | relative_url }}',
-  searchResultTemplate: '{{ result_elem | strip_newlines }}',
-  noResultsText: '{{ not_found }}',
-  templateMiddleware: function(prop, value, template) {
-    if (prop === 'categories') {
-      if (value === '') {
-        return `${value}`;
-      } else {
-        return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: '{{ "/assets/js/data/search.json" | relative_url }}',
+    searchResultTemplate: '{{ result_elem | strip_newlines }}',
+    noResultsText: '{{ not_found }}',
+    templateMiddleware: function (prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+        }
       }
-    }
 
-    if (prop === 'tags') {
-      if (value === '') {
-        return `${value}`;
-      } else {
-        return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+      if (prop === 'tags') {
+        if (value === '') {
+          return `${value}`;
+        } else {
+          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+        }
       }
     }
-  }
-});
+  });
+
+  (function () {
+    const sidebarInput = document.getElementById('sidebar-search-input');
+    const mainInput = document.getElementById('search-input');
+    const resultWrapper = document.getElementById('search-result-wrapper');
+    const mainContent = document.getElementById('main');
+    const searchHints = document.getElementById('search-hints');
+
+    if (sidebarInput && mainInput) {
+      sidebarInput.addEventListener('input', function () {
+        mainInput.value = this.value;
+        mainInput.dispatchEvent(new Event('input'));
+
+        if (this.value.trim() !== '') {
+          if (resultWrapper) resultWrapper.classList.remove('unloaded');
+          if (mainContent) mainContent.classList.add('unloaded');
+          if (searchHints) searchHints.classList.add('unloaded');
+        } else {
+          if (resultWrapper) resultWrapper.classList.add('unloaded');
+          if (mainContent) mainContent.classList.remove('unloaded');
+          if (searchHints) searchHints.classList.remove('unloaded');
+        }
+      });
+
+      sidebarInput.addEventListener('focus', function () {
+        if (resultWrapper) resultWrapper.classList.remove('unloaded');
+        if (mainContent) mainContent.classList.add('unloaded');
+      });
+    }
+  })();
 </script>

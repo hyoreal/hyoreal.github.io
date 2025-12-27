@@ -46,11 +46,11 @@
 
   </div><!-- .profile-wrapper -->
 
-  <!-- Search Bar -->
-  <div class="sidebar-search">
-    <div id="search-wrapper">
+  <!-- Search Bar (PC only) -->
+  <div class="sidebar-search d-none d-xl-block">
+    <div id="sidebar-search-wrapper">
       <i class="fas fa-search fa-fw"></i>
-      <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off"
+      <input class="form-control" id="sidebar-search-input" type="search" aria-label="search" autocomplete="off"
         placeholder="{{ site.data.locales[site.lang].search.hint | default: 'Search' }}">
     </div>
   </div>
