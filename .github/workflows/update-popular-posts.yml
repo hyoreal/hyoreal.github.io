@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-popular-posts:
@@ -35,13 +36,10 @@ jobs:
           const fs = require('fs');
 
           async function main() {
-            // 서비스 계정 인증
             const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
             const analyticsDataClient = new BetaAnalyticsDataClient({ credentials });
-
             const propertyId = process.env.GA4_PROPERTY_ID;
 
-            // 지난 30일간 조회수 상위 게시글 조회
             const [response] = await analyticsDataClient.runReport({
               property: `properties/${propertyId}`,
               dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
@@ -51,7 +49,6 @@ jobs:
               limit: 20,
             });
 
-            // /posts/ 경로만 필터링하고 Top 5 추출
             const popularPosts = response.rows
               .filter(row => row.dimensionValues[0].value.startsWith('/posts/'))
               .slice(0, 5)
@@ -61,7 +58,6 @@ jobs:
                 views: parseInt(row.metricValues[0].value, 10)
               }));
 
-            // JSON 파일로 저장
             fs.writeFileSync(
               '_data/popular-posts.json',
               JSON.stringify(popularPosts, null, 2)
@@ -76,10 +72,21 @@ jobs:
           });
           EOF
 
-      - name: Commit and push if changed
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add _data/popular-posts.json
-          git diff --staged --quiet || git commit -m "chore: update popular posts data"
-          git push
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update popular posts data'
+          title: '🔄 Update Popular Posts Data'
+          body: |
+            자동 생성된 PR입니다.
+            GA4에서 최근 30일간 조회수 기준 인기 게시글 Top 5를 업데이트합니다.
+          branch: update-popular-posts
+          delete-branch: true
+
+      - name: Enable auto-merge
+        if: steps.cpr.outputs.pull-request-number
+        run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
