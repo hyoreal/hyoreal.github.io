@@ -9,9 +9,9 @@ date: 2025-12-15 19:00:00 +0900
 
 comments: true
 
-categories: [AI 도구]
+categories: [AI, Tools]
 
-tags: [AI, Cursor, Context Management, Symbols, Refactoring, Productivity]
+tags: [AI, Cursor, Productivity]
 
 
 ---

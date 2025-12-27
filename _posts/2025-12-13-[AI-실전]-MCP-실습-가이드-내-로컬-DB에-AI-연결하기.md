@@ -9,9 +9,9 @@ date: 2025-12-13 11:50:00 +0900
 
 comments: true
 
-categories: [AI 실전]
+categories: [AI, MCP]
 
-tags: [AI, MCP, Claude, SQLite, 실습, Hands-On, Model Context Protocol]
+tags: [AI, MCP, SQLite, Claude]
 
 
 ---

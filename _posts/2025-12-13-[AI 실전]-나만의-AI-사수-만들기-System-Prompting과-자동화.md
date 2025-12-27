@@ -9,9 +9,9 @@ date: 2025-12-13 11:20:00 +0900
 
 comments: true
 
-categories: [AI 실전]
+categories: [AI, Prompt Engineering]
 
-tags: [AI, System Prompt, Cursor, Automation, Metaprompting, cursorrules]
+tags: [AI, System Prompt, Automation]
 
 
 ---

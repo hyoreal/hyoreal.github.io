@@ -9,9 +9,9 @@ date: 2025-12-15 22:40:00 +0900
 
 comments: true
 
-categories: [AI 도구]
+categories: [AI, Tools]
 
-tags: [AI, Ollama, LangChain4j, LLM, Local AI, Java, Spring]
+tags: [AI, Ollama, LangChain4j, Java]
 
 
 ---

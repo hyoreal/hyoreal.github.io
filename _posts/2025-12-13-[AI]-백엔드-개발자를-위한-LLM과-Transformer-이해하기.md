@@ -11,7 +11,7 @@ comments: true
 
 categories: [AI 기초]
 
-tags: [AI, LLM, Transformer, ChatGPT, Deep Learning]
+tags: [AI, LLM, Transformer]
 
 
 ---

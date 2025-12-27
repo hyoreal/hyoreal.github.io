@@ -9,9 +9,9 @@ date: 2025-12-15 19:10:00 +0900
 
 comments: true
 
-categories: [AI 실전]
+categories: [AI, Prompt Engineering]
 
-tags: [AI, System Prompt, JSON Output, API Integration, Security, Injection Defense]
+tags: [AI, System Prompt, JSON]
 
 
 ---

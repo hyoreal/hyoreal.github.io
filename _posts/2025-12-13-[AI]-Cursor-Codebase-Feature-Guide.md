@@ -11,7 +11,7 @@ comments: true
 
 categories: [AI 도구]
 
-tags: [AI, Cursor, Codebase, RAG, Vector Search, Spring, ComponentScan]
+tags: [AI, Cursor, IDE]
 
 
 ---

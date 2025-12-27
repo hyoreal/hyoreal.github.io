@@ -11,7 +11,7 @@ comments: true
 
 categories: [AI 기초]
 
-tags: [AI, LLM, Context Window, RAG, Stateless, Vector Database, HTTP]
+tags: [AI, LLM, Context Window, RAG]
 
 
 ---

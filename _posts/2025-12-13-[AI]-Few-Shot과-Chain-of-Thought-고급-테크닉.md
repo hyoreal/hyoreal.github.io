@@ -11,7 +11,7 @@ comments: true
 
 categories: [AI 실전]
 
-tags: [AI, Prompt Engineering, Few-Shot, Chain of Thought, CoT, Zero-Shot]
+tags: [AI, Prompt, Few-Shot, CoT]
 
 
 ---
