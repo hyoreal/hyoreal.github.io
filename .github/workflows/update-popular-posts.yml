@@ -96,3 +96,13 @@ jobs:
         run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for merge and trigger deploy
+        if: steps.cpr.outputs.pull-request-number
+        run: |
+          echo "Waiting for PR to be merged..."
+          sleep 30
+          gh workflow run pages-deploy.yml --ref main
+          echo "Deploy workflow triggered!"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
