@@ -19,6 +19,8 @@
         margin: 1rem 0;
         padding: 0;
         background: transparent;
+        position: relative;
+        z-index: 10;
     }
 
     .engagement-container {
@@ -115,10 +117,16 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        console.log('Engagement bar script started');
         const likeButton = document.getElementById('like-button');
         const likeCount = document.getElementById('like-count');
 
-        if (!likeButton) return;
+        if (!likeButton) {
+            console.error('Like button not found!');
+            return;
+        }
+
+        console.log('Like button found');
 
         const postUrl = window.location.pathname;
         const likedKey = 'blog-liked-' + postUrl;
@@ -126,21 +134,28 @@
         let localLikes = parseInt(localStorage.getItem('blog-likes-' + postUrl)) || 0;
         let isLiked = localStorage.getItem(likedKey) === 'true';
 
+        console.log('Initial state:', { localLikes, isLiked, postUrl });
+
         if (likeCount) likeCount.textContent = localLikes;
         if (isLiked && likeButton) {
             likeButton.classList.add('liked');
         }
 
         if (likeButton) {
-            likeButton.addEventListener('click', function () {
+            likeButton.addEventListener('click', function (e) {
+                console.log('Like button clicked');
+                e.preventDefault(); // Prevent any default behavior
+
                 if (isLiked) {
                     localLikes = Math.max(0, localLikes - 1);
                     isLiked = false;
                     likeButton.classList.remove('liked');
+                    console.log('Unliked');
                 } else {
                     localLikes++;
                     isLiked = true;
                     likeButton.classList.add('liked');
+                    console.log('Liked');
                 }
 
                 localStorage.setItem('blog-likes-' + postUrl, localLikes);
