@@ -5,9 +5,9 @@ title: "[Data Sturcture] Algorithm"
 
 comments: true
 
-categories: [Data Structure]
+categories: [Algorithm, Data Structure]
 
-tags: [Data Structure]
+tags: [Algorithm, Data Structure]
 
 ---
 

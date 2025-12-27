@@ -8,7 +8,7 @@ comments: true
 
 categories: [Java, Thread]
 
-tags: [Java, Thread]
+tags: [Java, Thread, Concurrency]
 ---
 
 ### Thread

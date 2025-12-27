@@ -6,9 +6,9 @@ title: "[Data Structure] Tree, Graph, BST "
 
 comments: true
 
-categories: [Data Structure]
+categories: [Algorithm, Data Structure]
 
-tags: [Data Structure]
+tags: [Algorithm, Tree, Graph]
 
 ---
 

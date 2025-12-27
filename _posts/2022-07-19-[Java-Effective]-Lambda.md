@@ -8,7 +8,7 @@ comments: true
 
 categories: [Java, Lambda]
 
-tags: [Java, Lambda]
+tags: [Java, Lambda, Functional]
 
 ---
 

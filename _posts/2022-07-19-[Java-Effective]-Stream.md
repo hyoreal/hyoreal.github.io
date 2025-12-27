@@ -8,7 +8,7 @@ comments: true
 
 categories: [Java, Stream]
 
-tags: [Java, Stream]
+tags: [Java, Stream, Lambda]
 
 ---
 

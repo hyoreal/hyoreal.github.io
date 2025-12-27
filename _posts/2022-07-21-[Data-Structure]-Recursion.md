@@ -6,9 +6,9 @@ title: "[Data Structure] 재귀 "
 
 comments: true
 
-categories: [Data Structure, Recursion]
+categories: [Algorithm, Data Structure]
 
-tags: [Data Structure, Recursion]
+tags: [Algorithm, Recursion]
 
 ---
 

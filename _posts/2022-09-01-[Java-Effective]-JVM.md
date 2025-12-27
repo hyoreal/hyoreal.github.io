@@ -6,9 +6,9 @@ title: "[Java-Effective] JVM "
 
 comments: true
 
-categories: [Java]
+categories: [Java, JVM]
 
-tags: [Java]
+tags: [Java, JVM, Memory]
 
 ---
 
