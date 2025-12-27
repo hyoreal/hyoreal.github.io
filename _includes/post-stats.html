@@ -132,7 +132,6 @@
 </style>
 
 <script>
-    // Sync like count between post meta and engagement bar
     (function () {
         const postUrl = window.location.pathname;
         const metaLikeCount = document.getElementById('meta-like-count');
@@ -143,7 +142,6 @@
             metaLikeCount.textContent = localLikes;
         }
 
-        // Update comment count from Giscus
         window.addEventListener('message', function (event) {
             if (event.origin !== 'https://giscus.app') return;
             if (!(typeof event.data === 'object' && event.data.giscus)) return;
