@@ -8,7 +8,7 @@ comments: true
 
 categories: [Spring]
 
-tags: [Spring]
+tags: [Spring, KakaoPay, API]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] Application Build, Run "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Boot]
 
-tags: [Spring]
+tags: [Spring, Build, Gradle]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] Spring MVC "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, MVC]
 
-tags: [Spring]
+tags: [Spring, MVC, DispatcherServlet]
 
 ---
 

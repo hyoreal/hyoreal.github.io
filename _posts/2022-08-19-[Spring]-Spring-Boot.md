@@ -6,9 +6,9 @@ title: "[Spring] Spring Boot "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Boot]
 
-tags: [Spring]
+tags: [Spring, Spring Boot, AutoConfiguration]
 
 ---
 

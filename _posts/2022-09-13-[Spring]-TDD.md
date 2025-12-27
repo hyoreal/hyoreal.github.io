@@ -6,9 +6,9 @@ title: "[Spring] TDD "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Testing]
 
-tags: [Spring]
+tags: [Spring, TDD, Testing]
 
 ---
 

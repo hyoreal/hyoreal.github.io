@@ -6,9 +6,9 @@ title: "[Spring] Hamcrest "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Testing]
 
-tags: [Spring]
+tags: [Spring, Hamcrest, Testing]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] API 문서 "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Documentation]
 
-tags: [Spring]
+tags: [Spring, API, Documentation]
 
 ---
 

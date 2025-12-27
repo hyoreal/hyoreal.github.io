@@ -6,9 +6,9 @@ title: "[Spring] DTO "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, MVC]
 
-tags: [Spring]
+tags: [Spring, DTO, MVC]
 
 ---
 

@@ -8,7 +8,7 @@ comments: true
 
 categories: [Spring, WebFlux]
 
-tags: [Spring, WebFlux]
+tags: [Spring, WebFlux, Reactive]
 
 ---
 

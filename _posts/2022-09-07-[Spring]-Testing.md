@@ -6,9 +6,9 @@ title: "[Spring] Testing "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Testing]
 
-tags: [Spring]
+tags: [Spring, Testing, JUnit]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] Controller "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, MVC]
 
-tags: [Spring]
+tags: [Spring, MVC, Controller]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] Transaction "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Transaction]
 
-tags: [Spring]
+tags: [Spring, Transaction, ACID]
 
 ---
 

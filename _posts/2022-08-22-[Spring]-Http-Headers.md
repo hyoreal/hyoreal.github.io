@@ -6,9 +6,9 @@ title: "[Spring] Http Headers "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, MVC]
 
-tags: [Spring]
+tags: [Spring, HTTP, Headers]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] Snippets을 활용한 API 문서화 "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, Documentation]
 
-tags: [Spring]
+tags: [Spring, Snippets, Documentation]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Spring] Rest Client "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, MVC]
 
-tags: [Spring]
+tags: [Spring, RestTemplate, WebClient]
 
 ---
 

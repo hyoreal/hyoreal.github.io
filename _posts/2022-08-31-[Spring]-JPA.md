@@ -6,9 +6,9 @@ title: "[Spring] JPA "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, JPA]
 
-tags: [Spring]
+tags: [Spring, JPA, Hibernate]
 
 ---
 

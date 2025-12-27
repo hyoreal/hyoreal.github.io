@@ -6,9 +6,9 @@ title: "[Spring] JPA Entity Mapping "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, JPA]
 
-tags: [Spring]
+tags: [Spring, JPA, Entity]
 
 ---
 

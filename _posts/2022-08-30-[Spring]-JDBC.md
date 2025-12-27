@@ -6,9 +6,9 @@ title: "[Spring] JDBC "
 
 comments: true
 
-categories: [Spring]
+categories: [Spring, JPA]
 
-tags: [Spring]
+tags: [Spring, JDBC, Database]
 
 ---
 
