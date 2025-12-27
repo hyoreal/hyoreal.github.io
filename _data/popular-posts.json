@@ -1,27 +1,27 @@
 [
   {
+    "url": "/posts/AI-기획-VALT-AI-기반-개인-자산-가치-최적화-에이전트-기획/",
+    "title": "[AI 기획] AI 기반 개인 자산 가치 최적화 에이전트 기획",
+    "views": 16
+  },
+  {
     "url": "/posts/AI-도구-Ollama와-LangChain4j-로컬-LLM-구축-및-Java-연동/",
     "title": "[AI 도구] Ollama와 LangChain4j - 로컬 LLM 구축 및 Java 연동",
-    "views": 9
+    "views": 16
+  },
+  {
+    "url": "/posts/AI-기획-시장-분석-및-전략-도출-프레임워크/",
+    "title": "[AI 기획] AI 서비스 기획: 시장 분석 및 전략 도출 프레임워크",
+    "views": 11
+  },
+  {
+    "url": "/posts/AI-실전-메타-프롬프트-블로깅-자동화-템플릿/",
+    "title": "[AI 실전] 메타 프롬프트 - 블로깅 자동화 템플릿",
+    "views": 6
   },
   {
     "url": "/posts/AI-실전-프롬프트-구조론-논리-설계-기법/",
     "title": "[AI 실전] 프롬프트 구조론 - 논리 설계 기법 (Chain of Thought, Few-shot)",
     "views": 6
-  },
-  {
-    "url": "/posts/AI-개발자가-본-LLM의-실체-마법이-아니라-확률-통계인-이유/",
-    "title": "[AI 기초] LLM 작동 원리 - Token, Next Token Prediction, Hallucination",
-    "views": 5
-  },
-  {
-    "url": "/posts/AI-기초-MCP-AI에게-손과-발을-달아주는-표준-인터페이스/",
-    "title": "[AI 기초] MCP(Model Context Protocol): AI에게 '손과 발'을 달아주는 표준 인터페이스 (feat. JDBC)",
-    "views": 5
-  },
-  {
-    "url": "/posts/AI-실전-MCP-실습-가이드-내-로컬-DB에-AI-연결하기/",
-    "title": "[AI 실전] MCP 실습 가이드: AI에게 내 로컬 DB(SQLite) 조회 권한 주기",
-    "views": 5
   }
 ]
