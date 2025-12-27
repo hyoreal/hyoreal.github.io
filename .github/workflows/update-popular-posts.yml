@@ -85,6 +85,12 @@ jobs:
           branch: update-popular-posts
           delete-branch: true
 
+      - name: Check PR status
+        run: |
+          echo "PR Number: ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "PR Operation: ${{ steps.cpr.outputs.pull-request-operation }}"
+          echo "PR URL: ${{ steps.cpr.outputs.pull-request-url }}"
+
       - name: Enable auto-merge
         if: steps.cpr.outputs.pull-request-number
         run: gh pr merge --auto --squash "${{ steps.cpr.outputs.pull-request-number }}"
