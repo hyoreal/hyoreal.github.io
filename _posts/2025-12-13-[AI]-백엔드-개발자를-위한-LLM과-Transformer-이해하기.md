@@ -9,7 +9,7 @@ date: 2025-12-13 10:30:00 +0900
 
 comments: true
 
-categories: [AI 기초]
+categories: [AI, LLM]
 
 tags: [AI, LLM, Transformer]
 
