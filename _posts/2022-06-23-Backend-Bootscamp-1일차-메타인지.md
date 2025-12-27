@@ -6,9 +6,9 @@ title: "[CodeStates] Backend 1일차 | 메타인지"
 
 comments: true
 
-categories: [etc]
+categories: [Bootcamp]
 
-tags: [etc]
+tags: [Bootcamp, Learning]
 
 ---
 

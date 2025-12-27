@@ -6,9 +6,9 @@ title: "[Error Log] Task :asciidoctor NO-SOURCE"
 
 comments: true
 
-categories: [Error Log]
+categories: [Troubleshooting]
 
-tags: [Error Log]
+tags: [Error, Troubleshooting]
 
 ---
 

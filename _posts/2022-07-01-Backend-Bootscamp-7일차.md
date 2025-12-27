@@ -8,7 +8,7 @@ comments: true
 
 categories: [Git]
 
-tags: [Git]
+tags: [Bootcamp, Learning]
 
 ---
 

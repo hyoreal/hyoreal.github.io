@@ -6,9 +6,9 @@ title: "[Cloud] Deploy"
 
 comments: true
 
-categories: [Cloud]
+categories: [DevOps, Cloud]
 
-tags: [Cloud]
+tags: [Cloud, AWS, Deploy]
 
 ---
 

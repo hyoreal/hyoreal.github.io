@@ -6,9 +6,9 @@ title: "[Error Log] gradle script '/home/runner/work/~/~/gradlew' is not executa
 
 comments: true
 
-categories: [Error Log]
+categories: [Troubleshooting]
 
-tags: [Error Log]
+tags: [Error, Troubleshooting]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[Error Log] execution failed for task ':test'"
 
 comments: true
 
-categories: [Error Log]
+categories: [Troubleshooting]
 
-tags: [Error Log]
+tags: [Error, Troubleshooting]
 
 ---
 

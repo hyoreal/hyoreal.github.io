@@ -8,7 +8,7 @@ comments: true
 
 categories: [Linux]
 
-tags: [Linux]
+tags: [Bootcamp, Learning]
 
 ---
 

@@ -6,9 +6,9 @@ title: "[CodeStates] Backend 2일차"
 
 comments: true
 
-categories: [etc]
+categories: [Bootcamp]
 
-tags: [etc]
+tags: [Bootcamp, Learning]
 
 ---
 

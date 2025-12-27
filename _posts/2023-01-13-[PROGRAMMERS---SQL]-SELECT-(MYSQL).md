@@ -6,9 +6,9 @@ title: "[PROGRAMMERS - SQL ] SELECT  (MYSQL)"
 
 comments: true
 
-categories: [SQL]
+categories: [Database, SQL]
 
-tags: [SQL]
+tags: [SQL, Database]
 
 ---
 

@@ -5,9 +5,9 @@ toc: true
 
 title: "[Nginx] 도메인 연동, SSL 적용, SSE 통신 헤더 설정"
 
-categories: [Nginx]
+categories: [DevOps, Nginx]
 
-tags: [Nginx]
+tags: [Nginx, Web Server]
 ---
 재고관리 프로그램 프로젝트를 진행하며 배포 과정에서 웹서버로 Nginx를 택하였고 Nginx Proxy 서버에 SSL 인증서를 등록하여 HTTPS를 적용하였다.
 

@@ -6,9 +6,9 @@ title: "[CodeStates] Backend 1일차 | 페어 프로그래밍"
 
 comments: true
 
-categories: [etc]
+categories: [Bootcamp]
 
-tags: [etc]
+tags: [Bootcamp, Learning]
 
 ---
 

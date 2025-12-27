@@ -6,9 +6,9 @@ title: "[Javascript] 변수"
 
 comments: true
 
-categories: [Javascript]
+categories: [JavaScript]
 
-tags: [Javascript]
+tags: [JavaScript, Frontend]
 
 ---
 

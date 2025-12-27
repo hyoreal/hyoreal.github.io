@@ -8,7 +8,7 @@ comments: true
 
 categories: [Front-End]
 
-tags: [Front-End]
+tags: [Bootcamp, Learning]
 
 ---
 

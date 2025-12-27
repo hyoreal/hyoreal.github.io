@@ -6,9 +6,9 @@ title: "[Javascript] 기초"
 
 comments: true
 
-categories: [Javascript]
+categories: [JavaScript]
 
-tags: [Javascript]
+tags: [JavaScript, Frontend]
 
 ---
 

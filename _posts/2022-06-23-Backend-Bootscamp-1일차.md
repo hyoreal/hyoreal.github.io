@@ -6,9 +6,9 @@ title: "[CodeStates] Backend 1일차 | OT"
 
 comments: true
 
-categories: [etc]
+categories: [Bootcamp]
 
-tags: [etc]
+tags: [Bootcamp, Learning]
 
 ---
 

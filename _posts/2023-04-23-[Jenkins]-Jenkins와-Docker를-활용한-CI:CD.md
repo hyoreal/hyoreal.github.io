@@ -5,9 +5,9 @@ toc: true
 
 title: "[Jenkins] Jenkins와 Docker를 활용한 CI/CD"
 
-categories: [Docker, Jenkins]
+categories: [DevOps, CI/CD]
 
-tags: [Docker, Jenkins]
+tags: [Docker, Jenkins, CI/CD]
 
 
 ---

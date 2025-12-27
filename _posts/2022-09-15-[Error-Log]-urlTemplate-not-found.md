@@ -6,9 +6,9 @@ title: "[Error Log] urlTemplate not found "
 
 comments: true
 
-categories: [Error Log]
+categories: [Troubleshooting]
 
-tags: [Error Log]
+tags: [Error, Troubleshooting]
 
 ---
 
