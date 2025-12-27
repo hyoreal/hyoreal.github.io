@@ -193,6 +193,9 @@ exclude:
   - gulpfile.js
   - node_modules
   - package*.json
+  - AI_로드맵_TechWiki_재배치.md
+  - blog_generator_prompt.md
+  - mcp-practice-log.md
 
 jekyll-archives:
   enabled: [categories, tags]

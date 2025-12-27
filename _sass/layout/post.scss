@@ -270,6 +270,13 @@ h1+.post-meta {
     li {
       padding-top: 2px;
       padding-bottom: 2px;
+
+      a {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
 }

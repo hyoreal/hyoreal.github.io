@@ -1,6 +1,9 @@
 # Bundler cache
 .bundle
 vendor
+
+# macOS
+.DS_Store
 Gemfile.lock
 
 # Jekyll cache
