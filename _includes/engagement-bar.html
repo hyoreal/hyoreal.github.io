@@ -114,40 +114,45 @@
 </style>
 
 <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', function () {
         const likeButton = document.getElementById('like-button');
         const likeCount = document.getElementById('like-count');
+
+        if (!likeButton) return;
+
         const postUrl = window.location.pathname;
         const likedKey = 'blog-liked-' + postUrl;
 
         let localLikes = parseInt(localStorage.getItem('blog-likes-' + postUrl)) || 0;
         let isLiked = localStorage.getItem(likedKey) === 'true';
 
-        likeCount.textContent = localLikes;
-        if (isLiked) {
+        if (likeCount) likeCount.textContent = localLikes;
+        if (isLiked && likeButton) {
             likeButton.classList.add('liked');
         }
 
-        likeButton.addEventListener('click', function () {
-            if (isLiked) {
-                localLikes = Math.max(0, localLikes - 1);
-                isLiked = false;
-                likeButton.classList.remove('liked');
-            } else {
-                localLikes++;
-                isLiked = true;
-                likeButton.classList.add('liked');
-            }
+        if (likeButton) {
+            likeButton.addEventListener('click', function () {
+                if (isLiked) {
+                    localLikes = Math.max(0, localLikes - 1);
+                    isLiked = false;
+                    likeButton.classList.remove('liked');
+                } else {
+                    localLikes++;
+                    isLiked = true;
+                    likeButton.classList.add('liked');
+                }
 
-            localStorage.setItem('blog-likes-' + postUrl, localLikes);
-            localStorage.setItem(likedKey, isLiked);
-            likeCount.textContent = localLikes;
+                localStorage.setItem('blog-likes-' + postUrl, localLikes);
+                localStorage.setItem(likedKey, isLiked);
+                if (likeCount) likeCount.textContent = localLikes;
 
-            // Sync with post meta like count
-            const metaLikeCount = document.getElementById('meta-like-count');
-            if (metaLikeCount) {
-                metaLikeCount.textContent = localLikes;
-            }
-        });
-    })();
+                // Sync with post meta like count
+                const metaLikeCount = document.getElementById('meta-like-count');
+                if (metaLikeCount) {
+                    metaLikeCount.textContent = localLikes;
+                }
+            });
+        }
+    });
 </script>
