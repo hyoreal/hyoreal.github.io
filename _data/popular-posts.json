@@ -1,0 +1,27 @@
+[
+    {
+        "url": "/posts/AI-기초-MCP-AI에게-손과-발을-달아주는-표준-인터페이스/",
+        "title": "[AI 기초] MCP: AI에게 손과 발을 달아주는 표준 인터페이스",
+        "views": 0
+    },
+    {
+        "url": "/posts/AI-실전-나만의-AI-사수-만들기-System-Prompting과-자동화/",
+        "title": "[AI 실전] 나만의 AI 사수 만들기 - System Prompting과 자동화",
+        "views": 0
+    },
+    {
+        "url": "/posts/Spring-카카오페이-API-연동하기/",
+        "title": "[Spring] 카카오페이 API 연동하기",
+        "views": 0
+    },
+    {
+        "url": "/posts/Jenkins-Jenkins와-Docker를-활용한-CI:CD/",
+        "title": "[Jenkins] Jenkins와 Docker를 활용한 CI/CD",
+        "views": 0
+    },
+    {
+        "url": "/posts/Spring-회원가입-인증-이메일-구현-(+-비동기,-Redis)/",
+        "title": "[Spring] 회원가입 인증 이메일 구현 (+ 비동기, Redis)",
+        "views": 0
+    }
+]

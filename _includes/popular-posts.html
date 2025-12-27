@@ -1,9 +1,36 @@
+{% assign popular_data = site.data.popular-posts %}
+{% if popular_data and popular_data.size > 0 %}
+{% assign use_popular_data = true %}
+{% else %}
+{% assign use_popular_data = false %}
 {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+{% endif %}
 
 <div id="popular-posts-wrapper">
     <div id="popular-posts">
         <div class="panel-heading">인기 게시글</div>
         <div class="popular-posts-list">
+            {% if use_popular_data %}
+            {% for item in popular_data limit:5 %}
+            {% assign post = site.posts | where: "url", item.url | first %}
+            {% if post %}
+            <div class="popular-post-item">
+                <a href="{{ post.url | relative_url }}" class="popular-post-link">
+                    <div class="popular-post-title">{{ post.title }}</div>
+                    <div class="popular-post-meta">
+                        <span class="popular-post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                        {% if item.views > 0 %}
+                        <span class="popular-post-views">· {{ item.views }} views</span>
+                        {% endif %}
+                        {% if post.categories.size > 0 %}
+                        <span class="popular-post-category">· {{ post.categories[0] }}</span>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% else %}
             {% for post in sorted_posts limit:5 %}
             <div class="popular-post-item">
                 <a href="{{ post.url | relative_url }}" class="popular-post-link">
@@ -17,6 +44,7 @@
                 </a>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
@@ -113,5 +141,9 @@
 
     [data-mode="dark"] .popular-post-category {
         color: #A78BFA;
+    }
+
+    .popular-post-views {
+        color: var(--text-muted-color);
     }
 </style>

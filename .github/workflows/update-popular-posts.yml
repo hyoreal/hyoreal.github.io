@@ -1,0 +1,85 @@
+name: Update Popular Posts
+
+on:
+  schedule:
+    # 매일 한국시간 오전 6시 (UTC 21:00)
+    - cron: '0 21 * * *'
+  workflow_dispatch: # 수동 실행 가능
+
+permissions:
+  contents: write
+
+jobs:
+  update-popular-posts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install googleapis
+
+      - name: Fetch popular posts from GA4
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          node << 'EOF'
+          const { BetaAnalyticsDataClient } = require('@google-analytics/data');
+          const fs = require('fs');
+
+          async function main() {
+            // 서비스 계정 인증
+            const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
+            const analyticsDataClient = new BetaAnalyticsDataClient({ credentials });
+
+            const propertyId = process.env.GA4_PROPERTY_ID;
+
+            // 지난 30일간 조회수 상위 게시글 조회
+            const [response] = await analyticsDataClient.runReport({
+              property: `properties/${propertyId}`,
+              dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
+              dimensions: [{ name: 'pagePath' }, { name: 'pageTitle' }],
+              metrics: [{ name: 'screenPageViews' }],
+              orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+              limit: 20,
+            });
+
+            // /posts/ 경로만 필터링하고 Top 5 추출
+            const popularPosts = response.rows
+              .filter(row => row.dimensionValues[0].value.startsWith('/posts/'))
+              .slice(0, 5)
+              .map(row => ({
+                url: row.dimensionValues[0].value,
+                title: row.dimensionValues[1].value.replace(' | hyoreal', ''),
+                views: parseInt(row.metricValues[0].value, 10)
+              }));
+
+            // JSON 파일로 저장
+            fs.writeFileSync(
+              '_data/popular-posts.json',
+              JSON.stringify(popularPosts, null, 2)
+            );
+
+            console.log('Popular posts updated:', popularPosts);
+          }
+
+          main().catch(err => {
+            console.error('Error fetching GA4 data:', err);
+            process.exit(1);
+          });
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _data/popular-posts.json
+          git diff --staged --quiet || git commit -m "chore: update popular posts data"
+          git push
