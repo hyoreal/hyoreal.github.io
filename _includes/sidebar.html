@@ -7,16 +7,16 @@
     <div id="avatar">
       <a href="{{ '/' | relative_url }}" class="mx-auto">
         {% if site.avatar != empty and site.avatar %}
-          {% capture avatar_url %}
-            {% if site.avatar contains '://' %}
-              {{ site.avatar }}
-            {% elsif site.img_cdn != empty and site.img_cdn %}
-              {{ site.avatar | prepend: site.img_cdn }}
-            {% else %}
-              {{ site.avatar | relative_url }}
-            {% endif %}
-          {% endcapture %}
-          <img src="{{ avatar_url | strip }}" alt="avatar" onerror="this.style.display='none'">
+        {% capture avatar_url %}
+        {% if site.avatar contains '://' %}
+        {{ site.avatar }}
+        {% elsif site.img_cdn != empty and site.img_cdn %}
+        {{ site.avatar | prepend: site.img_cdn }}
+        {% else %}
+        {{ site.avatar | relative_url }}
+        {% endif %}
+        {% endcapture %}
+        <img src="{{ avatar_url | strip }}" alt="avatar" onerror="this.style.display='none'">
         {% endif %}
       </a>
     </div>
@@ -25,6 +25,24 @@
       <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
     </div>
     <div class="site-subtitle font-italic">{{ site.tagline }}</div>
+
+    <!-- Visitor Stats -->
+    <div class="sidebar-stats">
+      <div class="stat-item">
+        <div class="stat-left">
+          <i class="fas fa-eye"></i>
+          <span>오늘 방문</span>
+        </div>
+        <span class="stat-value" id="busuanzi_value_site_uv">-</span>
+      </div>
+      <div class="stat-item">
+        <div class="stat-left">
+          <i class="fas fa-chart-line"></i>
+          <span>전체 조회</span>
+        </div>
+        <span class="stat-value" id="busuanzi_value_site_pv">-</span>
+      </div>
+    </div>
 
   </div><!-- .profile-wrapper -->
 
@@ -54,50 +72,41 @@
   <div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center">
 
     {% unless site.theme_mode %}
-      <button class="mode-toggle btn" aria-label="Switch Mode">
-        <i class="fas fa-adjust"></i>
-      </button>
+    <button class="mode-toggle btn" aria-label="Switch Mode">
+      <i class="fas fa-adjust"></i>
+    </button>
 
-      {% if site.data.contact.size > 0 %}
-        <span class="icon-border"></span>
-      {% endif %}
+    {% if site.data.contact.size > 0 %}
+    <span class="icon-border"></span>
+    {% endif %}
     {% endunless %}
 
     {% for entry in site.data.contact %}
-      {% case entry.type %}
-        {% when 'github', 'twitter' %}
-          {%- capture url -%}
-            https://{{ entry.type }}.com/{{ site[entry.type].username }}
-          {%- endcapture -%}
-        {% when 'email' %}
-          {% assign email = site.social.email | split: '@' %}
-          {%- capture url -%}
-            javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
-          {%- endcapture -%}
-        {% when 'rss' %}
-          {% assign url = '/feed.xml' | relative_url %}
-        {% else %}
-          {% assign url = entry.url %}
-      {% endcase %}
+    {% case entry.type %}
+    {% when 'github', 'twitter' %}
+    {%- capture url -%}
+    https://{{ entry.type }}.com/{{ site[entry.type].username }}
+    {%- endcapture -%}
+    {% when 'email' %}
+    {% assign email = site.social.email | split: '@' %}
+    {%- capture url -%}
+    javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+    {%- endcapture -%}
+    {% when 'rss' %}
+    {% assign url = '/feed.xml' | relative_url %}
+    {% else %}
+    {% assign url = entry.url %}
+    {% endcase %}
 
-      {% if url %}
-      <a href="{{ url }}" aria-label="{{ entry.type }}"
-        {% assign link_types = '' %}
+    {% if url %}
+    <a href="{{ url }}" aria-label="{{ entry.type }}" {% assign link_types='' %} {% unless entry.noblank %}
+      target="_blank" {% assign link_types='noopener noreferrer' %} {% endunless %} {% if entry.type=='mastodon' %} {%
+      assign link_types=link_types | append: ' me' | strip %} {% endif %} {% unless link_types==empty
+      %}rel="{{ link_types }}" {% endunless %}>
 
-        {% unless entry.noblank %}
-          target="_blank"
-          {% assign link_types = 'noopener noreferrer' %}
-        {% endunless %}
-
-        {% if entry.type == 'mastodon' %}
-          {% assign link_types = link_types | append: ' me' | strip %}
-        {% endif %}
-
-        {% unless link_types == empty %}rel="{{ link_types }}"{% endunless %}>
-
-        <i class="{{ entry.icon }}"></i>
-      </a>
-      {% endif %}
+      <i class="{{ entry.icon }}"></i>
+    </a>
+    {% endif %}
 
     {% endfor %}
 

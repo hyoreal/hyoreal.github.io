@@ -1,0 +1,119 @@
+{% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+
+<div id="popular-posts-wrapper">
+    <div id="popular-posts">
+        <div class="panel-heading">인기 게시글</div>
+        <div class="popular-posts-list">
+            {% for post in sorted_posts limit:5 %}
+            <div class="popular-post-item">
+                <a href="{{ post.url | relative_url }}" class="popular-post-link">
+                    <div class="popular-post-title">{{ post.title }}</div>
+                    <div class="popular-post-meta">
+                        <span class="popular-post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                        {% if post.categories.size > 0 %}
+                        <span class="popular-post-category">· {{ post.categories[0] }}</span>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+    #popular-posts-wrapper {
+        position: sticky;
+        top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    #popular-posts {
+        background: var(--main-bg);
+        border: 1px solid var(--card-border-color);
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.2s ease;
+    }
+
+    #popular-posts:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .panel-heading {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #8B5CF6;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+
+    [data-mode="dark"] .panel-heading {
+        color: #A78BFA;
+    }
+
+    .popular-post-item {
+        padding: 0.875rem 0;
+        border-bottom: 1px solid var(--main-border-color);
+    }
+
+    .popular-post-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .popular-post-item:first-child {
+        padding-top: 0;
+    }
+
+    .popular-post-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: all 0.2s ease;
+    }
+
+    .popular-post-link:hover {
+        transform: translateX(6px);
+    }
+
+    .popular-post-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 0.4rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .popular-post-link:hover .popular-post-title {
+        color: #8B5CF6;
+    }
+
+    [data-mode="dark"] .popular-post-link:hover .popular-post-title {
+        color: #A78BFA;
+    }
+
+    .popular-post-meta {
+        font-size: 0.75rem;
+        color: var(--text-muted-color);
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .popular-post-category {
+        color: #8B5CF6;
+        font-weight: 500;
+    }
+
+    [data-mode="dark"] .popular-post-category {
+        color: #A78BFA;
+    }
+</style>

@@ -1,0 +1,139 @@
+<div id="like-button-container">
+    <button id="like-button" class="like-btn" aria-label="Like this post">
+        <i class="far fa-heart"></i>
+        <span id="like-count">0</span>
+    </button>
+    <p class="like-text">이 글이 도움이 되었나요?</p>
+</div>
+
+<style>
+    #like-button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 2rem 0;
+    }
+
+    .like-text {
+        font-size: 0.9rem;
+        color: var(--text-muted-color);
+        margin: 0;
+    }
+
+    .like-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        background: var(--main-bg);
+        border: 2px solid var(--card-border-color);
+        border-radius: 24px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-color);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .like-btn:hover {
+        border-color: #8B5CF6;
+        background: rgba(139, 92, 246, 0.05);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+    }
+
+    [data-mode="dark"] .like-btn:hover {
+        border-color: #A78BFA;
+        background: rgba(167, 139, 250, 0.1);
+        box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
+    }
+
+    .like-btn.liked {
+        border-color: #8B5CF6;
+        background: rgba(139, 92, 246, 0.12);
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+    }
+
+    [data-mode="dark"] .like-btn.liked {
+        border-color: #A78BFA;
+        background: rgba(167, 139, 250, 0.18);
+        box-shadow: 0 4px 12px rgba(167, 139, 250, 0.25);
+    }
+
+    .like-btn i {
+        font-size: 1.4rem;
+        color: #8B5CF6;
+        transition: all 0.2s ease;
+    }
+
+    [data-mode="dark"] .like-btn i {
+        color: #A78BFA;
+    }
+
+    .like-btn.liked i {
+        animation: heartBeat 0.3s ease;
+    }
+
+    .like-btn.liked .fa-heart::before {
+        content: "\f004";
+        font-weight: 900;
+    }
+
+    #like-count {
+        color: var(--text-color);
+        min-width: 2rem;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    @keyframes heartBeat {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        25% {
+            transform: scale(1.3);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        const likeButton = document.getElementById('like-button');
+        const likeCount = document.getElementById('like-count');
+        const postUrl = window.location.pathname;
+        const likedKey = 'blog-liked-' + postUrl;
+
+        let localLikes = parseInt(localStorage.getItem('blog-likes-' + postUrl)) || 0;
+        let isLiked = localStorage.getItem(likedKey) === 'true';
+
+        likeCount.textContent = localLikes;
+        if (isLiked) {
+            likeButton.classList.add('liked');
+        }
+
+        likeButton.addEventListener('click', function () {
+            if (isLiked) {
+                localLikes = Math.max(0, localLikes - 1);
+                isLiked = false;
+                likeButton.classList.remove('liked');
+            } else {
+                localLikes++;
+                isLiked = true;
+                likeButton.classList.add('liked');
+            }
+
+            localStorage.setItem('blog-likes-' + postUrl, localLikes);
+            localStorage.setItem(likedKey, isLiked);
+            likeCount.textContent = localLikes;
+        });
+    })();
+</script>

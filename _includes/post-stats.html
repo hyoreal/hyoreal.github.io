@@ -1,0 +1,156 @@
+<style>
+    /* Mobile back button */
+    .mobile-back-btn {
+        display: none;
+        margin-bottom: 1rem;
+    }
+
+    .mobile-back-btn button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: transparent;
+        border: 1px solid var(--btn-border-color);
+        border-radius: 20px;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-back-btn button:hover {
+        background: rgba(139, 92, 246, 0.05);
+        border-color: #8B5CF6;
+        color: #8B5CF6;
+    }
+
+    [data-mode="dark"] .mobile-back-btn button:hover {
+        background: rgba(167, 139, 250, 0.1);
+        border-color: #A78BFA;
+        color: #A78BFA;
+    }
+
+    .mobile-back-btn button i {
+        font-size: 0.85rem;
+    }
+
+    /* Hide on desktop */
+    @media (min-width: 850px) {
+        .mobile-back-btn {
+            display: none !important;
+        }
+    }
+
+    /* Show only on mobile */
+    @media (max-width: 849px) {
+        .mobile-back-btn {
+            display: block;
+        }
+    }
+
+    /* Remove margin-top from tail-wrapper in post pages only */
+    #tail-wrapper {
+        margin-top: 0 !important;
+    }
+
+    /* Post meta stats styling */
+    #post-meta-likes,
+    #post-meta-comments {
+        margin-left: 1rem;
+    }
+
+    #post-meta-likes i,
+    #post-meta-comments i {
+        color: var(--text-muted-color);
+        margin-right: 0.25rem;
+    }
+
+    #meta-like-count,
+    #meta-comment-count {
+        font-weight: 600;
+    }
+
+    /* Sidebar visitor stats */
+    .sidebar-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+        padding: 1rem;
+        background: rgba(139, 92, 246, 0.08);
+        border-radius: 12px;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    [data-mode="dark"] .sidebar-stats {
+        background: rgba(167, 139, 250, 0.12);
+        border-color: rgba(167, 139, 250, 0.25);
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0.75rem;
+        background: var(--sidebar-btn-bg);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .stat-item:hover {
+        transform: translateX(3px);
+    }
+
+    .stat-item i {
+        font-size: 1rem;
+        color: #8B5CF6;
+        margin-right: 0.5rem;
+    }
+
+    [data-mode="dark"] .stat-item i {
+        color: #A78BFA;
+    }
+
+    .stat-item .stat-left {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--sidebar-muted-color);
+        font-size: 0.85rem;
+    }
+
+    .stat-item .stat-value {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #8B5CF6;
+    }
+
+    [data-mode="dark"] .stat-item .stat-value {
+        color: #A78BFA;
+    }
+</style>
+
+<script>
+    // Sync like count between post meta and engagement bar
+    (function () {
+        const postUrl = window.location.pathname;
+        const metaLikeCount = document.getElementById('meta-like-count');
+        const metaCommentCount = document.getElementById('meta-comment-count');
+
+        if (metaLikeCount) {
+            const localLikes = parseInt(localStorage.getItem('blog-likes-' + postUrl)) || 0;
+            metaLikeCount.textContent = localLikes;
+        }
+
+        // Update comment count from Giscus when available
+        if (metaCommentCount) {
+            setTimeout(function () {
+                const giscusFrame = document.querySelector('iframe.giscus-frame');
+                if (giscusFrame) {
+                    metaCommentCount.textContent = '0';
+                }
+            }, 2000);
+        }
+    })();
+</script>

@@ -16,7 +16,8 @@
     margin-bottom: 1.25rem;
 
     &:focus {
-      outline: none; /* avoid outline in Safari */
+      outline: none;
+      /* avoid outline in Safari */
     }
   }
 }
@@ -55,8 +56,8 @@
 }
 
 %link-hover {
-  color: #d2603a !important;
-  border-bottom: 1px solid #d2603a;
+  color: #8B5CF6 !important;
+  border-bottom: 1px solid #8B5CF6;
   text-decoration: none;
 }
 
@@ -91,11 +92,11 @@
 }
 
 %rounded {
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 %img-caption {
-  + em {
+  +em {
     display: block;
     text-align: center;
     font-style: normal;

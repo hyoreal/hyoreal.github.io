@@ -1,0 +1,147 @@
+<!-- Engagement Bar: Share and Like -->
+<div id="engagement-bar">
+    <div class="engagement-container">
+        <!-- Share Buttons -->
+        <div class="share-section">
+            {% include post-sharing.html %}
+        </div>
+
+        <!-- Like Button -->
+        <button id="like-button" class="engagement-btn like-btn" aria-label="Like this post">
+            <i class="far fa-heart"></i>
+            <span id="like-count">0</span>
+        </button>
+    </div>
+</div>
+
+<style>
+    #engagement-bar {
+        margin: 1rem 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .engagement-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .share-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .engagement-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        background: var(--main-bg);
+        border: 2px solid var(--card-border-color);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .like-btn:hover {
+        border-color: #8B5CF6;
+        background: rgba(139, 92, 246, 0.05);
+        transform: translateY(-2px);
+    }
+
+    [data-mode="dark"] .like-btn:hover {
+        border-color: #A78BFA;
+        background: rgba(167, 139, 250, 0.1);
+    }
+
+    .like-btn.liked {
+        border-color: #8B5CF6;
+        background: rgba(139, 92, 246, 0.12);
+    }
+
+    [data-mode="dark"] .like-btn.liked {
+        border-color: #A78BFA;
+        background: rgba(167, 139, 250, 0.18);
+    }
+
+    .like-btn i {
+        font-size: 1.2rem;
+        color: #8B5CF6;
+        transition: all 0.2s ease;
+    }
+
+    [data-mode="dark"] .like-btn i {
+        color: #A78BFA;
+    }
+
+    .like-btn.liked i {
+        animation: heartBeat 0.3s ease;
+    }
+
+    .like-btn.liked .fa-heart::before {
+        content: "\f004";
+        font-weight: 900;
+    }
+
+    #like-count {
+        color: var(--text-color);
+        min-width: 1.5rem;
+        text-align: center;
+    }
+
+    @keyframes heartBeat {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        25% {
+            transform: scale(1.3);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        const likeButton = document.getElementById('like-button');
+        const likeCount = document.getElementById('like-count');
+        const postUrl = window.location.pathname;
+        const likedKey = 'blog-liked-' + postUrl;
+
+        let localLikes = parseInt(localStorage.getItem('blog-likes-' + postUrl)) || 0;
+        let isLiked = localStorage.getItem(likedKey) === 'true';
+
+        likeCount.textContent = localLikes;
+        if (isLiked) {
+            likeButton.classList.add('liked');
+        }
+
+        likeButton.addEventListener('click', function () {
+            if (isLiked) {
+                localLikes = Math.max(0, localLikes - 1);
+                isLiked = false;
+                likeButton.classList.remove('liked');
+            } else {
+                localLikes++;
+                isLiked = true;
+                likeButton.classList.add('liked');
+            }
+
+            localStorage.setItem('blog-likes-' + postUrl, localLikes);
+            localStorage.setItem(likedKey, isLiked);
+            likeCount.textContent = localLikes;
+        });
+    })();
+</script>

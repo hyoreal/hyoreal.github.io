@@ -1,16 +1,98 @@
 {% assign enable_toc = false %}
 {% if site.toc and page.toc %}
-  {% if page.content contains '<h2' or page.content contains '<h3' %}
-    {% assign enable_toc = true %}
+{% if page.content contains '<h2' or page.content contains '<h3' %} {% assign enable_toc=true %} {% endif %} {% endif %}
+  {% if enable_toc %} <!-- BS-toc.js will be loaded at medium priority -->
+  <script src="{{ site.data.assets[origin].bootstrap-toc.js | relative_url }}"></script>
+
+  <div id="toc-wrapper">
+    <div id="toc-card">
+      <div class="panel-heading">Contents</div>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  </div>
+
+  <style>
+    #toc-wrapper {
+      position: sticky;
+      top: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    #toc-card {
+      background: var(--main-bg);
+      border: 1px solid var(--card-border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.2s ease;
+    }
+
+    #toc-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    #toc-card .panel-heading {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #8B5CF6;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    [data-mode="dark"] #toc-card .panel-heading {
+      color: #A78BFA;
+    }
+
+    #toc {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    #toc .nav-link {
+      padding: 0.5rem 0.75rem;
+      border-left: 3px solid transparent;
+      transition: all 0.2s ease;
+      color: var(--text-color);
+      border-radius: 6px;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    #toc .nav-link:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-left-color: #8B5CF6;
+      transform: translateX(4px);
+      color: #8B5CF6;
+    }
+
+    [data-mode="dark"] #toc .nav-link:hover {
+      background: rgba(167, 139, 250, 0.12);
+      border-left-color: #A78BFA;
+      color: #A78BFA;
+    }
+
+    #toc .nav-link.active {
+      background: rgba(139, 92, 246, 0.12);
+      color: #8B5CF6;
+      border-left-color: #8B5CF6;
+      font-weight: 600;
+    }
+
+    [data-mode="dark"] #toc .nav-link.active {
+      background: rgba(167, 139, 250, 0.18);
+      color: #A78BFA;
+      border-left-color: #A78BFA;
+    }
+
+    #toc .nav .nav {
+      padding-left: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    #toc .nav .nav .nav-link {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.75rem;
+    }
+  </style>
   {% endif %}
-{% endif %}
-
-{% if enable_toc %}
-<!-- BS-toc.js will be loaded at medium priority -->
-<script src="{{ site.data.assets[origin].bootstrap-toc.js | relative_url }}"></script>
-
-<div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-  <div class="panel-heading pl-3 pt-2 mb-2">{{- site.data.locales[site.lang].panel.toc -}}</div>
-  <nav id="toc" data-toggle="toc"></nav>
-</div>
-{% endif %}
