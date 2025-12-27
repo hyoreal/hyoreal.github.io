@@ -8,8 +8,8 @@
     let initTheme = lightTheme;
 
     if ($("html[data-mode=dark]").length > 0
-        || ($("html[data-mode]").length == 0
-            && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      || ($("html[data-mode]").length == 0
+        && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       initTheme = darkTheme;
     }
 
@@ -21,7 +21,7 @@
       "data-category-id": "{{ site.comments.giscus.category_id }}",
       "data-mapping": "{{ site.comments.giscus.mapping | default: 'pathname' }}",
       "data-reactions-enabled": "{{ site.comments.giscus.reactions_enabled | default: '1' }}",
-      "data-emit-metadata": "0",
+      "data-emit-metadata": "{{ site.comments.giscus.emit_metadata | default: '0' }}",
       "data-theme": initTheme,
       "data-input-position": "{{ site.comments.giscus.input_position | default: 'bottom' }}",
       "data-lang": "{{ site.comments.giscus.lang | default: lang }}",
@@ -35,7 +35,7 @@
 
     addEventListener("message", (event) => {
       if (event.source === window && event.data &&
-            event.data.direction === ModeToggle.ID) {
+        event.data.direction === ModeToggle.ID) {
         /* global theme mode changed */
         const mode = event.data.message;
         const theme = (mode === ModeToggle.DARK_MODE ? darkTheme : lightTheme);

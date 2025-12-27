@@ -25,6 +25,7 @@
       padding: 1.5rem;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       transition: box-shadow 0.2s ease;
+      margin-left: 16px;
     }
 
     #toc-card:hover {
@@ -57,6 +58,10 @@
       border-radius: 6px;
       margin-bottom: 0.25rem;
       display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
 
     #toc .nav-link:hover {

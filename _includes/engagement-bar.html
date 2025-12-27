@@ -142,6 +142,12 @@
             localStorage.setItem('blog-likes-' + postUrl, localLikes);
             localStorage.setItem(likedKey, isLiked);
             likeCount.textContent = localLikes;
+
+            // Sync with post meta like count
+            const metaLikeCount = document.getElementById('meta-like-count');
+            if (metaLikeCount) {
+                metaLikeCount.textContent = localLikes;
+            }
         });
     })();
 </script>

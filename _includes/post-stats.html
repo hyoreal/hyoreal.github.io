@@ -143,14 +143,18 @@
             metaLikeCount.textContent = localLikes;
         }
 
-        // Update comment count from Giscus when available
-        if (metaCommentCount) {
-            setTimeout(function () {
-                const giscusFrame = document.querySelector('iframe.giscus-frame');
-                if (giscusFrame) {
-                    metaCommentCount.textContent = '0';
+        // Update comment count from Giscus
+        window.addEventListener('message', function (event) {
+            if (event.origin !== 'https://giscus.app') return;
+            if (!(typeof event.data === 'object' && event.data.giscus)) return;
+
+            const giscusData = event.data.giscus;
+            if (giscusData.discussion) {
+                const commentCount = giscusData.discussion.totalCommentCount;
+                if (metaCommentCount) {
+                    metaCommentCount.textContent = commentCount;
                 }
-            }, 2000);
-        }
+            }
+        });
     })();
 </script>
