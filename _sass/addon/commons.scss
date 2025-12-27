@@ -1073,8 +1073,6 @@ $sidebar-display: "sidebar-display";
     padding-left: 0;
 
     li {
-      width: 100%;
-
       &:last-child {
         a {
           position: relative;
@@ -1961,8 +1959,6 @@ $sidebar-display: "sidebar-display";
     /* .profile-wrapper (min-width: 1650px) */
 
     ul {
-      padding-left: 2.5rem;
-
       >li:last-child {
         >a {
           position: static;
