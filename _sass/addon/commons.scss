@@ -1386,6 +1386,19 @@ $sidebar-display: "sidebar-display";
   }
 }
 
+/* Search keyword highlighting */
+#search-results mark {
+  background: rgba(255, 235, 59, 0.4);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+  color: inherit;
+}
+
+[data-mode="dark"] #search-results mark {
+  background: rgba(255, 193, 7, 0.35);
+  color: inherit;
+}
+
 /* #search-results */
 
 #topbar-title {

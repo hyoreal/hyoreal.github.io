@@ -19,18 +19,36 @@
 <script src="{{ site.data.assets[origin].search.js | relative_url }}"></script>
 
 <script>
-  SimpleJekyllSearch({
+  var searchInstance = SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('search-results'),
     json: '{{ "/assets/js/data/search.json" | relative_url }}',
     searchResultTemplate: '{{ result_elem | strip_newlines }}',
     noResultsText: '{{ not_found }}',
     templateMiddleware: function (prop, value, template) {
+      var searchInput = document.getElementById('search-input');
+      var query = searchInput ? searchInput.value.trim() : '';
+
+      function highlightText(text, query) {
+        if (!query || query.length < 2) return text;
+        var escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        var regex = new RegExp('(' + escaped + ')', 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+      }
+
+      if (prop === 'title') {
+        return highlightText(value, query);
+      }
+
+      if (prop === 'snippet') {
+        return highlightText(value, query);
+      }
+
       if (prop === 'categories') {
         if (value === '') {
           return `${value}`;
         } else {
-          return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`;
+          return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${highlightText(value, query)}</div>`;
         }
       }
 
@@ -38,7 +56,7 @@
         if (value === '') {
           return `${value}`;
         } else {
-          return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`;
+          return `<div><i class="fa fa-tag fa-fw"></i>${highlightText(value, query)}</div>`;
         }
       }
     }
