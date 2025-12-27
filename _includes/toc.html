@@ -20,6 +20,8 @@
       });
 
       if (typeof Toc !== 'undefined' && typeof $ !== 'undefined') {
+        $('#toc').empty();
+
         Toc.init({
           $nav: $('#toc'),
           $scope: $('article.post-content, .post-content, .content')
