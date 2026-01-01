@@ -60,6 +60,9 @@ google_analytics:
     proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
     cache_path:       # the local PV cache data, friendly to visitors from GFW region
 
+# Cloudflare Worker URL for real-time analytics
+analytics_worker_url: https://hyoreal-analytics.hyoreal51.workers.dev
+
 # Prefer color scheme setting.
 #
 # Note: Keep empty will follow the system prefer color by default,

@@ -1,0 +1,33 @@
+---
+layout: compress
+---
+/**
+* 실시간 방문자 통계 및 인기 게시글 로드
+* Cloudflare Worker API에서 데이터를 가져옵니다.
+*/
+
+(function() {
+/* Cloudflare Worker URL - 배포 후 실제 URL로 변경하세요 */
+const WORKER_URL = '{{ site.analytics_worker_url | default: "" }}';
+
+if (!WORKER_URL) {
+console.log('Analytics Worker URL not configured');
+return;
+}
+
+/* 방문자 통계 로드 */
+fetch(WORKER_URL + '/api/stats')
+.then(response => response.json())
+.then(data => {
+const todayEl = document.getElementById('today-visitors');
+const totalEl = document.getElementById('total-visitors');
+
+if (todayEl) {
+todayEl.textContent = data.todayVisitors.toLocaleString();
+}
+if (totalEl) {
+totalEl.textContent = data.totalVisitors.toLocaleString();
+}
+})
+.catch(err => console.log('Failed to load visitor stats'));
+})();
